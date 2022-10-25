@@ -12,8 +12,17 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                jost: ["'Jost'", ...defaultTheme.fontFamily.sans],
+                merriweather: ["'Merriweather'", ...defaultTheme.fontFamily.sans],
             },
+            gridTemplateColumns: {
+                container: 'minmax(0, var(--container, 1250px))'
+            },
+            colors: {
+                yellow: {
+                    300: "#E9AA52",
+                },
+            }
         },
     },
 

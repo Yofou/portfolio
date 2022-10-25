@@ -1,3 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800&family=Merriweather:wght@300;400;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    @apply font-merriweather;
+}
+
+@layer base {
+  :root {
+    --container: 930px;
+    background: #16131d;
+    animation: noise 1s steps(2) infinite;
+  }
+}
+
+@keyframes noise {
+	0% {
+		background-position: 0rem 9rem;
+	}
+	10% {
+		background-position: -1rem -4rem;
+	}
+	20% {
+		background-position: -8rem -4rem;
+	}
+	30% {
+		background-position: 9rem -9rem;
+	}
+	40% {
+		background-position: -2rem 7rem;
+	}
+	50% {
+		background-position: -9rem 4rem;
+	}
+	60% {
+		background-position: 2rem 6rem;
+	}
+	70% {
+		background-position: 7rem -8rem;
+	}
+	80% {
+		background-position: -9rem 1rem;
+	}
+	90% {
+		background-position: 6rem -5rem;
+	}
+	100% {
+		background-position: -7rem 0rem;
+	}
+}
