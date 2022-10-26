@@ -77,6 +77,8 @@ defineProps({});
 
     <HrTitle>Experience</HrTitle>
 
+    <HrTitle>What I've Worked with</HrTitle>
+
     <HrTitle>Blogs</HrTitle>
   </main>
 </template>

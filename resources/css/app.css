@@ -12,7 +12,11 @@
   :root {
     --container: 930px;
     background: #16131d;
-    animation: noise 1s steps(2) infinite;
+  }
+
+  .noise-bg {
+    background: url(./noise-new.png);
+    animation: noise 150ms ease-in-out infinite;
   }
 }
 
