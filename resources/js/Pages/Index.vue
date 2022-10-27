@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/inertia-vue3";
 import Nav from "../Components/Nav.vue";
 import Cursor from "../Components/Cursor.vue";
 import HrTitle from "../Components/HrTitle.vue"
+import Experience from "../Components/Experience.vue"
 
 defineProps({});
 </script>
@@ -76,6 +77,7 @@ defineProps({});
     </header>
 
     <HrTitle>Experience</HrTitle>
+    <Experience />
 
     <HrTitle>What I've Worked with</HrTitle>
 

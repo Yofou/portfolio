@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
 import { useTween, easeInOutQuint } from "vue-femtotween";
 
 const coords = ref([0, 0]);
+const scale = ref(1)
 type IsActive = {
   type: 'none' | 'clickable',
   element?: HTMLElement,
@@ -14,6 +15,7 @@ type MorphAttr = {
   x: number,
   y: number,
   borderRadius: number,
+  color: string
 }
 
 const isActive = reactive<IsActive>({ type: 'none' })
@@ -26,32 +28,68 @@ const tweenedCoords = useTween(coords, {
 });
 
 const onMouseMove = (event: MouseEvent) => {
-  coords.value[0] = event.x;
-  coords.value[1] = event.y;
+  requestAnimationFrame(() => {
+    coords.value[0] = event.x;
+    coords.value[1] = event.y;
+  })
 }
 
 const onMouseOver = (event: MouseEvent) => {
-    isActive.type = "none"
-    isActive.element = undefined
-    morphAttr.value = {}
+  isActive.type = "none"
+  isActive.element = undefined
+  morphAttr.value = {}
 
-    if (event.target instanceof HTMLElement) {
-      const styles = getComputedStyle(event.target)
-      if (styles.cursor === "pointer") {
-        isActive.type = "clickable"
-        isActive.element = event.target
-      }
+  if (event.target instanceof HTMLElement) {
+    const styles = getComputedStyle(event.target)
+    if (styles.cursor === "pointer") {
+      isActive.type = "clickable"
+      isActive.element = event.target
     }
   }
+}
+
+const onFocus = (event: FocusEvent) => {
+  if (document.activeElement instanceof HTMLElement) {
+    isActive.type = "clickable"
+    isActive.element = document.activeElement
+
+    window.removeEventListener('mousemove', onMouseMove)
+    window.removeEventListener('mouseover', onMouseOver)
+  }
+}
+
+const onMouseIn = () => {
+  scale.value = 0.8
+}
+
+const onMouseOut = () => {
+  scale.value = 1
+}
+
+const onFocusOut = () => {
+  isActive.type = "none"
+  isActive.element = undefined
+  morphAttr.value = {}
+  window.addEventListener('mousemove', onMouseMove)
+  window.addEventListener('mouseover', onMouseOver)
+}
 
 onMounted(() => {
   window.addEventListener("mousemove", onMouseMove);
   window.addEventListener("mouseover", onMouseOver)
+  window.addEventListener("mousedown", onMouseIn);
+  window.addEventListener("mouseup", onMouseOut);
+  window.addEventListener('focusin', onFocus);
+  window.addEventListener('focusout', onFocusOut);
 });
 
 onUnmounted(() => {
   window.removeEventListener("mousemove", onMouseMove);
   window.removeEventListener("mouseover", onMouseOver)
+  window.removeEventListener('focusin', onFocus);
+  window.removeEventListener('focusout', onFocusOut);
+  window.removeEventListener("mousedown", onMouseIn);
+  window.removeEventListener("mouseup", onMouseOut);
 })
 
 watch(isActive, (currentActive) => {
@@ -63,7 +101,8 @@ watch(isActive, (currentActive) => {
       height: parseInt(styles.height),
       x: rect.x,
       y: rect.y,
-      borderRadius: parseInt(styles.borderRadius)
+      borderRadius: parseInt(styles.borderRadius),
+      color: currentActive.element?.getAttribute('data-color')
     }
   }
 })
@@ -81,6 +120,8 @@ watch(isActive, (currentActive) => {
         '--width': isActive.element ? `${morphAttr?.width}px` : undefined,
         '--height': isActive.element ? `${morphAttr?.height}px` : undefined,
         '--borderRadius': isActive.element ? `${morphAttr?.borderRadius}px` : undefined,
+        '--color': isActive.element ? morphAttr.color : undefined,
+        '--scale': scale,
       }"
     />
   </div>
@@ -89,7 +130,7 @@ watch(isActive, (currentActive) => {
 <style scoped>
 .cursor {
   opacity: var(--opacitiy, 0);
-  --dim: 40px;
+  --dim: calc(40px * var(--scale));
   width: var(--dim);
   height: var(--dim);
   position: absolute;
@@ -97,7 +138,7 @@ watch(isActive, (currentActive) => {
   left: 0;
   transform: translateX(calc(var(--x, 0px) - (var(--dim) / 2)))
     translateY(calc(var(--y, 0px) - (var(--dim) / 2)));
-  transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1), width 150ms ease-in-out, height 150ms ease-in-out, border-radius 150ms ease-in-out, opacity 1000ms ease-in-out 500ms;
+  transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1), width 150ms ease-in-out, height 150ms ease-in-out, border-radius 150ms ease-in-out, opacity 1000ms ease-in-out 500ms, color 150ms ease-in-out;
   will-change: transform, width, height, border-radius;
 }
 
@@ -106,5 +147,6 @@ watch(isActive, (currentActive) => {
   width: var(--width, var(--dim));
   height: var(--height, var(--dim));
   border-radius: var(--borderRadius);
+  border-color: var(--color, theme("colors.yellow.300"))
 }
 </style>

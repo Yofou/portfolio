@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 * {
-    @apply font-merriweather;
+    @apply font-merriweather focus:border-none focus:outline-none;
 }
 
 @layer base {
