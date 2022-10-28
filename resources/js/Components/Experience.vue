@@ -15,7 +15,7 @@
     <ExperienceCard
       name="Web Revived"
       href="https://www.webrevived.com/"
-      description="My Time at Web Revived started of with small, young & enthusiastic team which taught me how to interact with others & how to plan & execute making web-apps."
+      description="My Time at Web Revived started of with small, young & enthusiastic team which taught me how to interact with others team members and work with them efficently & how to plan & execute making web-apps."
       position="Frontend"
       src="https://avatars.githubusercontent.com/u/85769836?s=400&u=61584ac8d57eff334e4f4f430951128c5d84e386&v=4"
       class-img="mt-4 justify-self-center mix-blend-lighten w-[130px]"

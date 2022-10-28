@@ -101,6 +101,7 @@ onMounted(() => {
   window.addEventListener('focusin', onFocus);
   window.addEventListener('focusout', onFocusOut);
   window.addEventListener('scroll', onScroll)
+  window.addEventListener('resize', onScroll)
 });
 
 onUnmounted(() => {
@@ -111,6 +112,7 @@ onUnmounted(() => {
   window.removeEventListener("mousedown", onMouseIn);
   window.removeEventListener("mouseup", onMouseOut);
   window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('resize', onScroll)
 })
 
 watch(isActive, watcherCallback)
