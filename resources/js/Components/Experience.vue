@@ -1,12 +1,24 @@
 <script setup lang="ts">
-  import ExperienceBar from './ExperienceBar.vue';
+  import ExperienceCard from "./ExperienceCard.vue"
 </script>
-
 
 <template>
   <section class="flex flex-col gap-4">
-    <h2 class="sr-only">Experience</h2>
+    <ExperienceCard
+      name="Visual Boston"
+      href="https://www.visualboston.com/"
+      description="Working with VisualBoston allowed me to work with a team of talented digital product experts focused on all aspects of the software life-cycle. which lead me in many directions from implementing interactive designs to working with complex & intricate mico-serivces."
+      position="Fullstack"
+      src="/vb.svg"
+    />
 
-    <ExperienceBar :start-date="new Date(Date.now() - 300000)" />
+    <ExperienceCard
+      name="Web Revived"
+      href="https://www.webrevived.com/"
+      description="My Time at Web Revived started of with small, young & enthusiastic team which taught me how to interact with others & how to plan & execute making web-apps."
+      position="Frontend"
+      src="https://avatars.githubusercontent.com/u/85769836?s=400&u=61584ac8d57eff334e4f4f430951128c5d84e386&v=4"
+      class-img="mt-4 justify-self-center mix-blend-lighten w-[130px]"
+    />
   </section>
 </template>

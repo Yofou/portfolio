@@ -48,6 +48,25 @@ const onMouseOver = (event: MouseEvent) => {
   }
 }
 
+const watcherCallback = (currentActive: IsActive) => {
+  if (currentActive.element) {
+    const styles = getComputedStyle(currentActive.element)
+    const rect = currentActive.element?.getBoundingClientRect()
+    morphAttr.value = {
+      width: parseInt(styles.width),
+      height: parseInt(styles.height),
+      x: rect.x,
+      y: rect.y,
+      borderRadius: parseInt(styles.borderRadius),
+      color: currentActive.element?.getAttribute('data-color')
+    }
+  }
+};
+
+const onScroll = () => {
+  if (isActive.type !== "none") watcherCallback(isActive)
+}
+
 const onFocus = (event: FocusEvent) => {
   if (document.activeElement instanceof HTMLElement) {
     isActive.type = "clickable"
@@ -81,6 +100,7 @@ onMounted(() => {
   window.addEventListener("mouseup", onMouseOut);
   window.addEventListener('focusin', onFocus);
   window.addEventListener('focusout', onFocusOut);
+  window.addEventListener('scroll', onScroll)
 });
 
 onUnmounted(() => {
@@ -90,22 +110,10 @@ onUnmounted(() => {
   window.removeEventListener('focusout', onFocusOut);
   window.removeEventListener("mousedown", onMouseIn);
   window.removeEventListener("mouseup", onMouseOut);
+  window.removeEventListener('scroll', onScroll)
 })
 
-watch(isActive, (currentActive) => {
-  if (currentActive.element) {
-    const styles = getComputedStyle(currentActive.element)
-    const rect = currentActive.element?.getBoundingClientRect()
-    morphAttr.value = {
-      width: parseInt(styles.width),
-      height: parseInt(styles.height),
-      x: rect.x,
-      y: rect.y,
-      borderRadius: parseInt(styles.borderRadius),
-      color: currentActive.element?.getAttribute('data-color')
-    }
-  }
-})
+watch(isActive, watcherCallback)
 </script>
 
 <template>

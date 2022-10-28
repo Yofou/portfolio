@@ -55,7 +55,7 @@ defineProps({});
             px-3
             inline-block
             mt-2
-            bg-[#302638]
+            bg-purple-300
             text-yellow-300
             rounded-full
           "
