@@ -1,9 +1,10 @@
 <script setup>
 import { Head } from "@inertiajs/inertia-vue3";
-import Nav from "../Components/Nav.vue";
-import Cursor from "../Components/Cursor.vue";
-import HrTitle from "../Components/HrTitle.vue"
-import Experience from "../Components/Experience.vue"
+import Nav from "@/Components/Nav.vue";
+import Cursor from "@/Components/Cursor.vue";
+import HrTitle from "@/Components/HrTitle.vue";
+import Experience from "@/Components/Experience.vue";
+import WhatIveUsed from "@/Components/WhatIveUsed.vue";
 
 defineProps({});
 </script>
@@ -40,14 +41,14 @@ defineProps({});
       <h2 class="text-yellow-300 text-3xl max-w-[600px] font-black underline">
         Hey I'm Nathan 👋
       </h2>
-      <p class="max-w-[600px] leading-[1.6rem]">
+      <p class="max-w-[600px] leading-[1.5rem]">
         I've been a problem-solving enthusiast since I was a wee bambi. In my
         spare time, I convert concepts from frontend-mentor into fullstack
-        applications. You can ofton find me chating and helping with liked
-        minded members of various online communities. Professionally by trade
-        I'm a software engineering consultant currently with Visual Boston.
-        However, I'm always open to new & enticing problems to solve so let’s
-        connect at
+        applications. You can often find me chatting and helping with
+        like-minded members of various online communities. Professionally by
+        trade I'm a software engineering consultant currently with Visual
+        Boston. However, I'm always open to new & enticing problems to solve so
+        let’s connect at
         <a
           href="mailto:reach@yofou.dev"
           class="
@@ -80,6 +81,7 @@ defineProps({});
     <Experience />
 
     <HrTitle>What I've Worked with</HrTitle>
+    <WhatIveUsed />
 
     <HrTitle>Blogs</HrTitle>
   </main>

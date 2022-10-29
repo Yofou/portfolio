@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <nav class="flex gap-4 mb-10 -translate-x-2">
+  <nav class="grid grid-cols-[repeat(2,max-content),1fr,max-content] gap-4 mb-10 -translate-x-2">
     <Link
       class="
         font-semibold

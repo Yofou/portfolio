@@ -28,10 +28,8 @@ const tweenedCoords = useTween(coords, {
 });
 
 const onMouseMove = (event: MouseEvent) => {
-  requestAnimationFrame(() => {
-    coords.value[0] = event.x;
-    coords.value[1] = event.y;
-  })
+  coords.value[0] = event.x;
+  coords.value[1] = event.y;
 }
 
 const onMouseOver = (event: MouseEvent) => {

@@ -34,7 +34,6 @@ const props = defineProps<{
       class="
         col-start-2 col-end-3
         row-span-2
-        py-4
         gap-y-2
         grid grid-cols-1
         h-full
@@ -56,7 +55,7 @@ const props = defineProps<{
         "
         >{{ props.name }} - {{ props.position }} Developer</a
       >
-      <p class="row-start-2 row-end-3 text-white/80">{{ props.description }}</p>
+      <p class="row-start-2 row-end-3 leading-[1.5rem] text-white/80">{{ props.description }}</p>
     </div>
   </div>
 </template>
