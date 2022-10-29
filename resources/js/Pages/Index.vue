@@ -10,13 +10,16 @@ defineProps({});
 </script>
 
 <template>
-  <Head title="Nathan's | Home" />
+  <Head>
+    <title>Nathan's | Home</title>
+    <meta name="description" content="Nathan Portfolio Site & Where they put their short blogs reviewing Web Developement tech.">
+    <link rel='canonical' href='/' />
+  </Head>
   <Cursor />
 
-  <h1 class="sr-only">Nathan Home page</h1>
   <main
     class="
-      w-screen
+      w-full
       justify-center
       min-h-screen
       grid-flow-row
@@ -27,6 +30,7 @@ defineProps({});
       selection:bg-purple-500
     "
   >
+    <h1 class="sr-only">Nathan's Portfolio landing page</h1>
     <Nav />
 
     <header
@@ -74,6 +78,8 @@ defineProps({});
         "
         src="/profile-new.png"
         alt=""
+        width="676"
+        height="676"
       />
     </header>
 

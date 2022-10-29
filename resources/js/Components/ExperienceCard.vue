@@ -6,6 +6,8 @@ const props = defineProps<{
   position: "Frontend" | "Backend" | "Fullstack";
   classImg?: string;
   href: string;
+  width?: string;
+  height?: string;
 }>();
 </script>
 
@@ -28,7 +30,9 @@ const props = defineProps<{
         props.classImg ?? 'place-self-center'
       }`"
       :src="src"
-      :alt="name"
+      alt=""
+      :width="props.width"
+      :height="props.height"
     />
     <div
       class="
