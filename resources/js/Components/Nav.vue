@@ -1,9 +1,16 @@
 <script setup lang="ts">
-  import { Link } from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/inertia-vue3";
 </script>
 
 <template>
-  <nav class="grid grid-cols-[repeat(2,max-content),1fr,max-content] gap-4 mb-10 -translate-x-2">
+  <nav
+    class="
+      grid grid-cols-[repeat(2,max-content),1fr,max-content]
+      gap-4
+      mb-10
+      -translate-x-2
+    "
+  >
     <Link
       class="
         font-semibold
@@ -28,5 +35,25 @@
     >
       Blogs
     </Link>
+
+    <a class="justify-self-end" href="https://github.com/Yofou">
+      <img
+        class="w-[30px] h-[30px] rounded-full"
+        src="/icons/github.svg"
+        alt="Github Profiled"
+        width="150"
+        height="150"
+      />
+    </a>
+
+    <a href="https://www.linkedin.com/in/nathan-ewen-b86315182/">
+      <img
+        class="w-[30px] h-[30px] rounded-[5px]"
+        src="/icons/linkedin.svg"
+        alt="Linked in Profile"
+        width="150"
+        height="150"
+      />
+    </a>
   </nav>
 </template>
