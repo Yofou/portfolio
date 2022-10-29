@@ -4,6 +4,9 @@ import { useTween, easeInOutQuint } from "vue-femtotween";
 
 const coords = ref([0, 0]);
 const scale = ref(1)
+const opacity = ref(0)
+const tweenedOpacity = useTween(opacity, {
+})
 type IsActive = {
   type: 'none' | 'clickable',
   element?: HTMLElement,
@@ -36,8 +39,13 @@ const onMouseOver = (event: MouseEvent) => {
   isActive.type = "none"
   isActive.element = undefined
   morphAttr.value = {}
+  opacity.value = 1
 
   if (event.target instanceof HTMLElement) {
+    if (event.target instanceof HTMLParagraphElement || event.target instanceof HTMLHeadingElement) {
+      opacity.value = 0.2
+    }
+
     const styles = getComputedStyle(event.target)
     if (styles.cursor === "pointer") {
       isActive.type = "clickable"
@@ -122,7 +130,7 @@ watch(isActive, watcherCallback)
       class="cursor rounded-full border border-yellow-300"
       :class="[isActive.element ? 'shouldMorph' : '']"
       :style="{
-        '--opacitiy': tweenedCoords[0] ? 1 : 0,
+        '--opacitiy': tweenedOpacity,
         '--x': isActive.element ? `${morphAttr?.x}px` : `${tweenedCoords[0]}px`,
         '--y': isActive.element ? `${morphAttr?.y}px` : `${tweenedCoords[1]}px`,
         '--width': isActive.element ? `${morphAttr?.width}px` : undefined,
@@ -146,7 +154,7 @@ watch(isActive, watcherCallback)
   left: 0;
   transform: translateX(calc(var(--x, 0px) - (var(--dim) / 2)))
     translateY(calc(var(--y, 0px) - (var(--dim) / 2)));
-  transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1), width 150ms ease-in-out, height 150ms ease-in-out, border-radius 150ms ease-in-out, opacity 1000ms ease-in-out 500ms, color 150ms ease-in-out;
+  transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1), width 150ms ease-in-out, height 150ms ease-in-out, border-radius 150ms ease-in-out, color 150ms ease-in-out;
   will-change: transform, width, height, border-radius;
 }
 
