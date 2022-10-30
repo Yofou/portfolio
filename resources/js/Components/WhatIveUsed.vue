@@ -1,10 +1,14 @@
 <script lang="ts" setup>
+  import { ref } from "vue";
   import UsedBadge from "./UsedBadge.vue"
+
+  const readMore = ref(false)
+  const onReadMore = () => readMore.value = !readMore.value
 </script>
 
 <template>
   <section class="w-full">
-    <ul class="w-full flex flex-wrap gap-2">
+    <ul class="w-full flex justify-center md:justify-start flex-wrap gap-2" :class="{ 'cancel': readMore }">
       <UsedBadge data-color="#61DAFB" src="/icons/react.svg">React</UsedBadge>
       <UsedBadge data-color="#F1413D" src="/icons/svelte.svg">Svelte</UsedBadge>
       <UsedBadge data-color="#4FC08D" src="/icons/vue.svg">Vuejs</UsedBadge>
@@ -35,6 +39,9 @@
       <UsedBadge data-color="#57A143" src="/icons/neovim.svg">Neovim</UsedBadge>
       <UsedBadge data-color="#0078D7" src="/icons/vscode.svg">Visual Studio Code</UsedBadge>
       <UsedBadge data-color="#F06611" src="/icons/gitpod.svg">Gitpod</UsedBadge>
+      <button @click="onReadMore" class="text-yellow-300 inline md:hidden font-semibold rounded-full px-4 py-2">
+        {{ readMore ? 'Show Less' : 'Show More' }}
+      </button>
     </ul>
   </section>
 </template>

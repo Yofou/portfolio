@@ -5,8 +5,7 @@ import { useTween, easeInOutQuint } from "vue-femtotween";
 const coords = ref([0, 0]);
 const scale = ref(1)
 const opacity = ref(0)
-const tweenedOpacity = useTween(opacity, {
-})
+const tweenedOpacity = useTween(opacity, {})
 type IsActive = {
   type: 'none' | 'clickable',
   element?: HTMLElement,
@@ -30,22 +29,37 @@ const tweenedCoords = useTween(coords, {
   precision: 1,
 });
 
-const onMouseMove = (event: MouseEvent) => {
-  coords.value[0] = event.x;
-  coords.value[1] = event.y;
+let id: number
+const onMouseMove = (event: Event) => {
+  opacity.value = 1
+  if (event instanceof MouseEvent) {
+    coords.value[0] = event.x;
+    coords.value[1] = event.y;
+  } else if (event instanceof TouchEvent) {
+    let first = event.changedTouches[0]
+    coords.value[0] = first.clientX
+    coords.value[1] = first.clientY
+  }
+
+  if (event.target instanceof HTMLParagraphElement || event.target instanceof HTMLHeadingElement) {
+    opacity.value = 0.2
+  }
+
+  if (id) clearTimeout(id)
+  const oldCoords = [...coords.value]
+  id = setTimeout(() => {
+    if (isActive.type === "none" && oldCoords[0] === coords.value[0] && oldCoords[1] === coords.value[1]) {
+      opacity.value = 0
+    }
+  }, 250)
 }
 
 const onMouseOver = (event: MouseEvent) => {
   isActive.type = "none"
   isActive.element = undefined
   morphAttr.value = {}
-  opacity.value = 1
 
   if (event.target instanceof HTMLElement) {
-    if (event.target instanceof HTMLParagraphElement || event.target instanceof HTMLHeadingElement) {
-      opacity.value = 0.2
-    }
-
     const styles = getComputedStyle(event.target)
     if (styles.cursor === "pointer") {
       isActive.type = "clickable"
@@ -69,7 +83,7 @@ const watcherCallback = (currentActive: IsActive) => {
   }
 };
 
-const onScroll = () => {
+const onScroll = (e: Event) => {
   if (isActive.type !== "none") watcherCallback(isActive)
 }
 
@@ -80,7 +94,17 @@ const onFocus = (event: FocusEvent) => {
 
     window.removeEventListener('mousemove', onMouseMove)
     window.removeEventListener('mouseover', onMouseOver)
+    window.removeEventListener('touchmove', onMouseOut)
   }
+}
+
+const onFocusOut = () => {
+  isActive.type = "none"
+  isActive.element = undefined
+  morphAttr.value = {}
+  window.addEventListener('mousemove', onMouseMove)
+  window.addEventListener('mouseover', onMouseOver)
+  window.addEventListener('touchmove', onMouseOut)
 }
 
 const onMouseIn = () => {
@@ -91,34 +115,39 @@ const onMouseOut = () => {
   scale.value = 1
 }
 
-const onFocusOut = () => {
-  isActive.type = "none"
-  isActive.element = undefined
-  morphAttr.value = {}
-  window.addEventListener('mousemove', onMouseMove)
-  window.addEventListener('mouseover', onMouseOver)
+const onMutate = () => {
+  watcherCallback(isActive)
 }
 
+const mutObserver = new MutationObserver(onMutate)
 onMounted(() => {
   window.addEventListener("mousemove", onMouseMove);
   window.addEventListener("mouseover", onMouseOver)
+  window.addEventListener("touchmove", onMouseMove);
   window.addEventListener("mousedown", onMouseIn);
   window.addEventListener("mouseup", onMouseOut);
   window.addEventListener('focusin', onFocus);
   window.addEventListener('focusout', onFocusOut);
   window.addEventListener('scroll', onScroll)
   window.addEventListener('resize', onScroll)
+
+  const main = document.body.querySelector('main')
+  if (main) {
+    mutObserver.observe(main, { attributes: false, childList: true, subtree: true })
+  }
 });
 
 onUnmounted(() => {
   window.removeEventListener("mousemove", onMouseMove);
   window.removeEventListener("mouseover", onMouseOver)
+  window.removeEventListener('touchmove', onMouseMove);
   window.removeEventListener('focusin', onFocus);
   window.removeEventListener('focusout', onFocusOut);
   window.removeEventListener("mousedown", onMouseIn);
   window.removeEventListener("mouseup", onMouseOut);
   window.removeEventListener('scroll', onScroll)
   window.removeEventListener('resize', onScroll)
+  mutObserver.disconnect()
 })
 
 watch(isActive, watcherCallback)

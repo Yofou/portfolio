@@ -14,7 +14,9 @@ const props = defineProps<{
 <template>
   <div
     class="
-      grid grid-cols-[150px,1fr] grid-rows-[max-content,1fr]
+      grid
+      grid-cols-1 md:grid-cols-[150px,1fr]
+      grid-rows-[max-content,1fr]
       relative
       gap-2 gap-x-8
       w-full
@@ -26,9 +28,15 @@ const props = defineProps<{
     "
   >
     <img
-      :class="`w-full col-start-1 col-end-2 row-start-1 row-end-[-1] ${
-        props.classImg ?? 'place-self-center'
-      }`"
+      :class="`
+        w-full
+        hidden md:block
+        md:col-start-1
+        md:col-end-2
+        row-start-1
+        row-end-[-1]
+        ${props.classImg ?? 'place-self-center'}
+      `"
       :src="src"
       alt=""
       :width="props.width"
@@ -36,7 +44,8 @@ const props = defineProps<{
     />
     <div
       class="
-        col-start-2 col-end-3
+        col-start-1 col-end-2
+        md:col-start-2 md:col-end-3
         row-span-2
         gap-y-2
         grid grid-cols-1

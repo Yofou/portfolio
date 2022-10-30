@@ -11,10 +11,11 @@ defineProps({});
 
 <template>
   <Head>
-    <title>Nathan's | Home</title>
+    <title>Nathan | WebDev</title>
     <meta name="description" content="Nathan Portfolio Site & Where they put their short blogs reviewing Web Developement tech.">
     <link rel='canonical' href='/' />
   </Head>
+
   <Cursor />
 
   <main
@@ -26,6 +27,7 @@ defineProps({});
       auto-rows-max
       grid grid-cols-container
       py-20
+      px-4
       text-white
       selection:bg-purple-500
     "
@@ -36,7 +38,8 @@ defineProps({});
     <header
       class="
         w-full
-        grid grid-cols-[1fr,max-content]
+        grid
+        grid-cols-[1fr] md:grid-cols-[1fr,max-content]
         gap-y-6
         justify-items-start
         items-end
@@ -70,6 +73,8 @@ defineProps({});
 
       <img
         class="
+          hidden
+          md:block
           w-[200px]
           h-[250px]
           col-start-2 col-end-3
