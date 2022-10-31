@@ -12,7 +12,7 @@ defineProps({});
 
 <template>
   <Head>
-    <title>Nathan | WebDev</title>
+    <title>Nathan | Home</title>
     <meta name="description" content="Nathan Portfolio Site & Where they put their short blogs reviewing Web Developement tech.">
     <link rel='canonical' href='/' />
   </Head>
