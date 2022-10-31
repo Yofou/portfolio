@@ -15,7 +15,7 @@
   }
 
   .noise-bg {
-    background: url(./noise-new.png);
+    background: url(/noise-new.png);
     animation: noise 150ms ease-in-out infinite;
   }
 }

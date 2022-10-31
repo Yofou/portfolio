@@ -1,10 +1,11 @@
 <script setup>
 import { Head } from "@inertiajs/inertia-vue3";
-import Nav from "@/Components/Nav.vue";
-import Cursor from "@/Components/Cursor.vue";
-import HrTitle from "@/Components/HrTitle.vue";
-import Experience from "@/Components/Experience.vue";
-import WhatIveUsed from "@/Components/WhatIveUsed.vue";
+import Nav from "@/Components/shared/Nav.vue";
+import Cursor from "@/Components/shared/Cursor.vue";
+import HrTitle from "@/Components/shared/HrTitle.vue";
+import Experience from "@/Components/index/Experience.vue";
+import WhatIveUsed from "@/Components/index/WhatIveUsed.vue";
+import NoBlogs from "@/Components/shared/NoBlogs.vue";
 
 defineProps({});
 </script>
@@ -17,7 +18,6 @@ defineProps({});
   </Head>
 
   <Cursor />
-
   <main
     class="
       w-full
@@ -95,5 +95,6 @@ defineProps({});
     <WhatIveUsed />
 
     <HrTitle>Blogs</HrTitle>
+    <NoBlogs />
   </main>
 </template>
