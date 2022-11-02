@@ -19,6 +19,14 @@ export default defineConfig({
         }),
     ],
     ssr: {
-        noExternal: ['@inertiajs/server'],
+        noExternal: ['@inertiajs/server', 'vue-femtotween'],
+    },
+    optimizeDeps: {
+      include: ['vue-femtotween']
+    },
+    build: {
+      commonjsOptions: {
+        include: [/vue-femtotween/, /node_modules/]
+      }
     }
 });

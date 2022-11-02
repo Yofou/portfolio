@@ -119,8 +119,10 @@ const onMutate = () => {
   watcherCallback(isActive)
 }
 
-const mutObserver = new MutationObserver(onMutate)
+let mutObserver: MutationObserver | null
+
 onMounted(() => {
+  mutObserver = new MutationObserver(onMutate)
   window.addEventListener("mousemove", onMouseMove);
   window.addEventListener("mouseover", onMouseOver)
   window.addEventListener("touchmove", onMouseMove);
