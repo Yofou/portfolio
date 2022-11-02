@@ -14,7 +14,9 @@ class IndexController extends Controller
     public function index()
     {
         //
-        return inertia("Index", []);
+      return inertia("Index", [
+        "host" => env("APP_URL")
+      ]);
     }
 
     /**

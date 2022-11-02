@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Head } from "@inertiajs/inertia-vue3";
 import Nav from "@/Components/shared/Nav.vue";
 import Cursor from "@/Components/shared/Cursor.vue";
@@ -6,16 +6,21 @@ import HrTitle from "@/Components/shared/HrTitle.vue";
 import Experience from "@/Components/index/Experience.vue";
 import WhatIveUsed from "@/Components/index/WhatIveUsed.vue";
 import NoBlogs from "@/Components/shared/NoBlogs.vue";
+import MetaSocials from "@/Components/shared/MetaSocials.vue";
 
-defineProps({});
+defineProps<{
+  host: string
+}>();
 </script>
 
 <template>
   <Head>
     <title>Nathan | Home</title>
     <meta name="description" content="Nathan Portfolio Site & Where they put their short blogs reviewing Web Developement tech.">
-    <link rel='canonical' href='/' />
+    <link rel='canonical' :href="`${host}/`" />
   </Head>
+
+  <MetaSocials :host="host" />
 
   <Cursor />
   <main

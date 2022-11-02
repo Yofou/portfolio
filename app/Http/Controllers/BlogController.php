@@ -14,7 +14,9 @@ class BlogController extends Controller
     public function index()
     {
         //
-        return inertia("Blogs", []);
+      return inertia("Blogs", [
+        "host" => env("APP_URL")
+      ]);
     }
 
     /**
