@@ -92,6 +92,7 @@ const onFocus = (event: FocusEvent) => {
   if (document.activeElement instanceof HTMLElement) {
     isActive.type = "clickable"
     isActive.element = document.activeElement
+    opacity.value = 1
 
     window.removeEventListener('mousemove', onMouseMove)
     window.removeEventListener('mouseover', onMouseOver)
