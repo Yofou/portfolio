@@ -24,6 +24,7 @@
       "
       href="/"
       :class="{ 'pointer-events-none underline': page.url.value == '/'}"
+      :tabindex="page.url.value == '/' ? -1 : undefined"
     >
       Home
     </Link>
@@ -37,6 +38,7 @@
       "
       href="/blogs"
       :class="{ 'pointer-events-none underline': page.url.value == '/blogs'}"
+      :tabindex="page.url.value == '/blogs' ? -1 : undefined"
     >
       Blogs
     </Link>
