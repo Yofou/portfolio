@@ -1,14 +1,31 @@
-<script setup lang="ts">
+<script lang="ts">
 import { Head } from "@inertiajs/inertia-vue3";
 import Container from "@/Components/shared/Container.vue";
 import HrTitle from "@/Components/shared/HrTitle.vue";
 import Nav from "@/Components/shared/Nav.vue";
 import NoBlogs from "@/Components/shared/NoBlogs.vue";
 import MetaSocials from "@/Components/shared/MetaSocials.vue";
+import Cursor from "@/Components/shared/Cursor.vue";
 
-defineProps<{
-  host: string
-}>()
+export default {
+  props: {
+    host: String
+  },
+  setup(props) {
+    return {
+      host: props.host,
+    }
+  },
+  layout: Cursor,
+  components: {
+    Head,
+    MetaSocials,
+    Container,
+    Nav,
+    HrTitle,
+    NoBlogs
+  }
+}
 </script>
 
 <template>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { Link } from "@inertiajs/inertia-vue3";
+  import { Link } from "@inertiajs/inertia-vue3";
+  import { usePage } from "@inertiajs/inertia-vue3"
+
+  const page = usePage()
 </script>
 
 <template>
@@ -20,6 +23,7 @@ import { Link } from "@inertiajs/inertia-vue3";
         py-1
       "
       href="/"
+      :class="{ 'pointer-events-none underline': page.url.value == '/'}"
     >
       Home
     </Link>
@@ -32,6 +36,7 @@ import { Link } from "@inertiajs/inertia-vue3";
         py-1
       "
       href="/blogs"
+      :class="{ 'pointer-events-none underline': page.url.value == '/blogs'}"
     >
       Blogs
     </Link>

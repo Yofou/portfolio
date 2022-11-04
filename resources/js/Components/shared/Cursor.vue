@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
+import { onMounted, reactive, ref, watch } from "vue";
 import { useTween, easeInOutQuint } from "vue-femtotween";
+import { Inertia } from "@inertiajs/inertia"
 
 const coords = ref([0, 0]);
 const scale = ref(1)
@@ -120,8 +121,17 @@ const onMutate = () => {
 }
 
 let mutObserver: MutationObserver | null
+const attachMutObserver = () => {
+  const main = document.body.querySelector('main')
+  if (main) {
+    mutObserver.observe(main, { attributes: false, childList: true, subtree: true })
+  }
+}
 
-onMounted(() => {
+const onMount = () => {
+  isActive.type = 'none'
+  isActive.element = undefined
+  morphAttr.value = {}
   mutObserver = new MutationObserver(onMutate)
   window.addEventListener("mousemove", onMouseMove);
   window.addEventListener("mouseover", onMouseOver)
@@ -132,14 +142,9 @@ onMounted(() => {
   window.addEventListener('focusout', onFocusOut);
   window.addEventListener('scroll', onScroll)
   window.addEventListener('resize', onScroll)
+}
 
-  const main = document.body.querySelector('main')
-  if (main) {
-    mutObserver.observe(main, { attributes: false, childList: true, subtree: true })
-  }
-});
-
-onUnmounted(() => {
+const onUnMount = () => {
   window.removeEventListener("mousemove", onMouseMove);
   window.removeEventListener("mouseover", onMouseOver)
   window.removeEventListener('touchmove', onMouseMove);
@@ -150,7 +155,17 @@ onUnmounted(() => {
   window.removeEventListener('scroll', onScroll)
   window.removeEventListener('resize', onScroll)
   mutObserver.disconnect()
-})
+}
+
+onMounted(() => {
+  onMount()
+  attachMutObserver()
+  Inertia.on('navigate', () => {
+    onUnMount()
+    onMount()
+    attachMutObserver()
+  })
+});
 
 watch(isActive, watcherCallback)
 </script>
@@ -172,6 +187,7 @@ watch(isActive, watcherCallback)
       }"
     />
   </div>
+  <slot />
 </template>
 
 <style scoped>

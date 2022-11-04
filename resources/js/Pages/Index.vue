@@ -1,16 +1,33 @@
-<script setup lang="ts">
+<script lang="ts">
 import { Head } from "@inertiajs/inertia-vue3";
 import Nav from "@/Components/shared/Nav.vue";
-import Cursor from "@/Components/shared/Cursor.vue";
 import HrTitle from "@/Components/shared/HrTitle.vue";
 import Experience from "@/Components/index/Experience.vue";
 import WhatIveUsed from "@/Components/index/WhatIveUsed.vue";
 import NoBlogs from "@/Components/shared/NoBlogs.vue";
 import MetaSocials from "@/Components/shared/MetaSocials.vue";
+import Cursor from "@/Components/shared/Cursor.vue";
 
-defineProps<{
-  host: string
-}>();
+export default {
+  props: {
+    host: String
+  },
+  setup(props) {
+    return {
+      host: props.host,
+    }
+  },
+  layout: Cursor,
+  components: {
+    Head,
+    MetaSocials,
+    Nav,
+    HrTitle,
+    NoBlogs,
+    Experience,
+    WhatIveUsed,
+  }
+}
 </script>
 
 <template>
@@ -22,7 +39,6 @@ defineProps<{
 
   <MetaSocials :host="host" />
 
-  <Cursor />
   <main
     class="
       w-full

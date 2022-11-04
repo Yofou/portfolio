@@ -1,9 +1,4 @@
-<script setup lang="ts">
-  import Cursor from "./Cursor.vue"
-</script>
-
 <template>
-  <Cursor />
   <main
     class="
       w-full
