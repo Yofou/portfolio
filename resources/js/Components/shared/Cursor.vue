@@ -122,6 +122,7 @@ const onMutate = () => {
 }
 
 let mutObserver: MutationObserver | null
+let focusedMutateObserver: MutationObserver | null
 const attachMutObserver = () => {
   const main = document.body.querySelector('main')
   if (main) {
@@ -143,6 +144,21 @@ const onMount = () => {
   window.addEventListener('focusout', onFocusOut);
   window.addEventListener('scroll', onScroll)
   window.addEventListener('resize', onScroll)
+
+  // this checks next stage of this code checks if the element we're focused on get's deleted
+  // if so we manually call focusout else cursor will get deleted with it.
+  focusedMutateObserver = new MutationObserver((mutationList) => {
+    mutationList.forEach(mutationItem => {
+      if (mutationItem.type === "childList" && mutationItem.removedNodes.length > 0) {
+        mutationItem.removedNodes.forEach(el => {
+          if (el != isActive.element && !el.contains(isActive.element)) return
+          onFocusOut()
+        })
+      }
+    })
+  })
+
+  focusedMutateObserver.observe(document.body, { childList: true })
 }
 
 const onUnMount = () => {
@@ -155,7 +171,8 @@ const onUnMount = () => {
   window.removeEventListener("mouseup", onMouseOut);
   window.removeEventListener('scroll', onScroll)
   window.removeEventListener('resize', onScroll)
-  mutObserver.disconnect()
+  mutObserver?.disconnect()
+  focusedMutateObserver?.disconnect()
 }
 
 onMounted(() => {

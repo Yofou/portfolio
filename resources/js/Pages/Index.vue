@@ -7,6 +7,7 @@ import WhatIveUsed from "@/Components/index/WhatIveUsed.vue";
 import NoBlogs from "@/Components/shared/NoBlogs.vue";
 import MetaSocials from "@/Components/shared/MetaSocials.vue";
 import Cursor from "@/Components/shared/Cursor.vue";
+import CommandPallete from "@/Components/shared/CommandPallete.vue";
 
 export default {
   props: {
@@ -26,6 +27,7 @@ export default {
     NoBlogs,
     Experience,
     WhatIveUsed,
+    CommandPallete,
   }
 }
 </script>
@@ -37,8 +39,8 @@ export default {
     <link rel='canonical' :href="`${host}/`" />
   </Head>
 
+  <CommandPallete />
   <MetaSocials :host="host" />
-
   <main
     class="
       w-full
