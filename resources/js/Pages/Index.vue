@@ -96,16 +96,16 @@ export default {
         class="
           hidden
           md:block
-          w-[200px]
+          w-[220px]
           h-[250px]
           col-start-2 col-end-3
           row-start-1 row-end-3
           object-cover
         "
-        src="/profile-new.png"
+        src="/profile.png"
         alt=""
-        width="676"
-        height="676"
+        width="512"
+        height="512"
       />
     </header>
 
