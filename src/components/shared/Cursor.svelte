@@ -8,6 +8,7 @@
 	};
 	let borderColor = DEFAULTS.borderColor;
 	let element: HTMLElement | undefined = undefined;
+  let shouldMouseEvent = true
 	$: if (element) {
 		const styles = getComputedStyle(element);
 		const rect = element.getBoundingClientRect();
@@ -104,20 +105,40 @@
 			borderRadius: 900
 		});
 	};
+
+  const onFocusIn = (event: FocusEvent) => {
+    if (event.target instanceof HTMLBodyElement) return
+    if (event.target instanceof HTMLElement) {
+      element = event.target
+      shouldMouseEvent = false
+    }
+  }
+
+  const onFocusOut = () => {
+    element = undefined
+    morph.set({
+      width: DEFAULTS.width,
+			height: DEFAULTS.width,
+			borderRadius: 900
+    })
+    shouldMouseEvent = true
+  }
 </script>
 
 <svelte:window
-	on:mousemove={onMove}
-	on:mouseover={onOver}
+	on:mousemove={shouldMouseEvent ? onMove : undefined}
+	on:mouseover={shouldMouseEvent ? onOver: undefined}
 	on:mousedown={onMouseDown}
 	on:mouseup={onMouseUp}
 	on:scroll={onScroll}
+  on:focusin={onFocusIn}
+  on:focusout={onFocusOut}
 />
 
 <div class="fixed z-10 top-0 left-0 w-screen h-screen pointer-events-none noise-bg">
 	<div
 		class="cursor rounded-[var(--borderRadius)] border border-[color:var(--borderColor)]"
-		style:--x={`${$coords.x}px`}
+		style:--x={`${$coords.x?.toPrecision()}px`}
 		style:--y={`${$coords.y}px`}
 		style:--width={`${$morph.width}px`}
 		style:--height={`${$morph.height}px`}
