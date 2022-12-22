@@ -62,7 +62,7 @@
 
 		if (!element) {
 			coords.set({ x: event.x, y: event.y })
-        .then(() => $opacity = 0);
+        .then(() => opacity.set(0, { delay: 250 }));
 		}
 	};
 
