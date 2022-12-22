@@ -51,9 +51,7 @@
 		duration: 100
 	});
 
-	let timeoutId: number;
 	const onMove = (event: MouseEvent) => {
-		if (timeoutId) clearTimeout(timeoutId);
 		if (
 			event.target instanceof HTMLParagraphElement ||
 			event.target instanceof HTMLHeadingElement
@@ -64,12 +62,8 @@
 		}
 
 		if (!element) {
-			coords.set({ x: event.x, y: event.y });
-
-			const oldCoords = { x: event.x, y: event.y };
-			timeoutId = window.setTimeout(() => {
-				if ($coords.x === oldCoords.x && $coords.y === oldCoords.y) $opacity = 0;
-			}, 500);
+			coords.set({ x: event.x, y: event.y })
+        .then(() => $opacity = 0);
 		}
 	};
 
@@ -107,6 +101,7 @@
   const onFocusIn = (event: FocusEvent) => {
     if (event.target instanceof HTMLBodyElement) return
     if (event.target instanceof HTMLElement) {
+      $opacity = 1
       element = event.target
       shouldMouseEvent = false
     }
@@ -119,6 +114,7 @@
 			height: DEFAULTS.width,
 			borderRadius: 900
     })
+    $opacity = 0
     shouldMouseEvent = true
   }
 </script>
