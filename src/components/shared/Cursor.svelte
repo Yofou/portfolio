@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { spring, tweened } from 'svelte/motion';
 
-  // test
 	const DEFAULTS = {
 		width: 40,
 		height: 40,
@@ -91,7 +90,13 @@
 	};
 
 	const onMouseDown = () => {
-		$scale = 0.8
+    if (element && element.hasAttribute('onclick')) {
+      $scale = 0.8
+    } else if (element && element.hasAttribute('href')) {
+      $scale = 0.8
+    } else if (!element) {
+      $scale = 0.8
+    }
 	};
 
 	const onMouseUp = () => {
