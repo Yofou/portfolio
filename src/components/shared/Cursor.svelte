@@ -43,6 +43,10 @@
 		}
 	);
 
+  const scale = tweened(1, {
+    duration: 100,
+  });
+
 	const opacity = tweened(0, {
 		duration: 100
 	});
@@ -82,6 +86,7 @@
 		if (event.target instanceof HTMLElement) {
 			const styles = getComputedStyle(event.target);
 			if (styles.cursor === 'pointer') {
+        $scale = 1
 				element = event.target;
 			}
 		}
@@ -92,19 +97,11 @@
 	};
 
 	const onMouseDown = () => {
-		morph.set({
-			width: $morph.width * 0.8,
-			height: $morph.height * 0.8,
-			borderRadius: 900
-		});
+		$scale = 0.8
 	};
 
 	const onMouseUp = () => {
-		morph.set({
-			width: DEFAULTS.width,
-			height: DEFAULTS.height,
-			borderRadius: 900
-		});
+		$scale = 1
 	};
 
   const onFocusIn = (event: FocusEvent) => {
@@ -141,8 +138,8 @@
 		class="cursor rounded-[var(--borderRadius)] border border-[color:var(--borderColor)]"
 		style:--x={`${$coords.x?.toPrecision()}px`}
 		style:--y={`${$coords.y}px`}
-		style:--width={`${$morph.width}px`}
-		style:--height={`${$morph.height}px`}
+		style:--width={`${$morph.width * $scale}px`}
+		style:--height={`${$morph.height * $scale}px`}
 		style:--borderRadius={`${$morph.borderRadius}px`}
 		style:--borderColor={borderColor}
 		style:--opacity={$opacity}
