@@ -9,7 +9,7 @@
   <meta property="og:title" content="Nathans Portfolio">
   <meta property="og:description" content="Nathan Portfolio & Where they put their short blogs reviewing Web Developement tech.">
   <meta property="og:type" content="article">
-  <meta property="og:image" content="{$page.url.host}/portfolio-thumbnail.png">
+  <meta property="og:image" content="{$page.url}portfolio-thumbnail.png">
 </svelte:head>
 
 <main
