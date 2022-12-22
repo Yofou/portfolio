@@ -5,6 +5,10 @@
   import NoBlogs from "$components/shared/NoBlogs.svelte";
 </script>
 
+<svelte:head>
+  <title>Nathans | Home</title>
+</svelte:head>
+
 <header
 	class="
         w-full
