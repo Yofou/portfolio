@@ -3,13 +3,15 @@
 	import '$lib/app.css';
 	import Nav from '$components/shared/Nav.svelte';
   import Cursor from '$components/shared/Cursor.svelte';
+
+  $: console.log($page.url)
 </script>
 
 <svelte:head>
   <meta property="og:title" content="Nathans Portfolio">
   <meta property="og:description" content="Nathan Portfolio & Where they put their short blogs reviewing Web Developement tech.">
   <meta property="og:type" content="article">
-  <meta property="og:image" content="{$page.url}portfolio-thumbnail.png">
+  <meta property="og:image" content="{$page.url.origin}/portfolio-thumbnail.png">
 </svelte:head>
 
 <main
