@@ -3,8 +3,6 @@
 	import '$lib/app.css';
 	import Nav from '$components/shared/Nav.svelte';
   import Cursor from '$components/shared/Cursor.svelte';
-
-  $: console.log($page.url)
 </script>
 
 <svelte:head>
