@@ -1,29 +1,38 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build && vite build --ssr"
-    },
-    "devDependencies": {
-        "@inertiajs/inertia": "^0.11.0",
-        "@inertiajs/inertia-vue3": "^0.6.0",
-        "@inertiajs/progress": "^0.2.7",
-        "@inertiajs/server": "^0.1.0",
-        "@tailwindcss/forms": "^0.5.2",
-        "@vitejs/plugin-vue": "^3.0.0",
-        "@vue/server-renderer": "^3.2.31",
-        "autoprefixer": "^10.4.2",
-        "axios": "^0.27",
-        "laravel-vite-plugin": "^0.6.0",
-        "lodash": "^4.17.19",
-        "postcss": "^8.4.6",
-        "tailwindcss": "^3.1.0",
-        "vite": "^3.0.0",
-        "vue": "^3.2.31"
-    },
-    "dependencies": {
-        "humanize-duration": "^3.27.3",
-        "ms": "^2.1.3",
-        "vue-femtotween": "^1.0.0"
-    }
+	"name": "portfolio",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/kit": "^1.0.0",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"autoprefixer": "^10.4.13",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"postcss": "^8.4.20",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"svelte": "^3.54.0",
+		"svelte-check": "^2.9.2",
+		"tailwindcss": "^3.2.4",
+		"tslib": "^2.4.1",
+		"typescript": "^4.9.3",
+		"vite": "^4.0.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@tailwindcss/forms": "^0.5.3",
+		"sass": "^1.57.1"
+	}
 }

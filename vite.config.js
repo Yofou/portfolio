@@ -1,32 +1,8 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
+import { sveltekit } from '@sveltejs/kit/vite';
 
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: 'resources/js/app.js',
-            ssr: 'resources/js/ssr.js',
-            refresh: true,
-        }),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
-    ],
-    ssr: {
-        noExternal: ['@inertiajs/server', 'vue-femtotween'],
-    },
-    optimizeDeps: {
-      include: ['vue-femtotween']
-    },
-    build: {
-      commonjsOptions: {
-        include: [/vue-femtotween/, /node_modules/]
-      }
-    }
-});
+/** @type {import('vite').UserConfig} */
+const config = {
+	plugins: [sveltekit()]
+};
+
+export default config;
