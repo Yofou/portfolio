@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { page } from "$app/stores"
 	import '$lib/app.css';
+  import { page } from "$app/stores"
 	import Nav from '$components/shared/Nav.svelte';
   import Cursor from '$components/shared/Cursor.svelte';
 </script>

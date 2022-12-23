@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { element_is } from 'svelte/internal';
 	import { spring, tweened } from 'svelte/motion';
 
 	const DEFAULTS = {
@@ -85,8 +87,19 @@
 		}
 	};
 
-	const onScroll = () => {
-		if (element) element = element;
+	const resyncCursor = () => {
+    if (element) {
+      const styles = window.getComputedStyle(element)
+      if (!element.isConnected) {
+        element = undefined
+        $opacity = 0
+      } else if (styles.display === 'none') {
+        element = undefined
+        $opacity = 0
+      } else {
+        element = element;
+      }
+    }
 	};
 
 	const onMouseDown = () => {
@@ -122,6 +135,14 @@
     $opacity = 0
     shouldMouseEvent = true
   }
+
+  let observer: MutationObserver
+  onMount(() => {
+    const main = document.querySelector('main')
+    if (!main) return
+    observer = new MutationObserver(resyncCursor)
+    observer.observe(main, { childList: true, subtree: true, attributes: true, characterData: true })
+  })
 </script>
 
 <svelte:window
@@ -129,7 +150,8 @@
 	on:mouseover={shouldMouseEvent ? onOver: undefined}
 	on:mousedown={onMouseDown}
 	on:mouseup={onMouseUp}
-	on:scroll={onScroll}
+	on:scroll={resyncCursor}
+  on:resize={resyncCursor}
   on:focusin={onFocusIn}
   on:focusout={onFocusOut}
 />
