@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { element_is } from 'svelte/internal';
 	import { spring, tweened } from 'svelte/motion';
 
 	const DEFAULTS = {
