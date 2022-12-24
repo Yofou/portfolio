@@ -44,7 +44,7 @@ const socialImageURL = new URL('/portfolio-thumbnail.png', Astro.url);
       			selection:bg-purple-500
     		"
 		>
-			<Nav url={pathname} />
+			<Nav url={Astro.url.pathname} />
   			<slot />
 		</main>
 
