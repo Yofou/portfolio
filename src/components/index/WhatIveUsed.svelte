@@ -37,11 +37,13 @@
 		<UsedBadge data-color="#57A143" src="/icons/neovim.svg">Neovim</UsedBadge>
 		<UsedBadge data-color="#0078D7" src="/icons/vscode.svg">Visual Studio Code</UsedBadge>
 		<UsedBadge data-color="#F06611" src="/icons/gitpod.svg">Gitpod</UsedBadge>
-		<button
-			on:click={onReadMore}
-			class="text-yellow-300 inline md:hidden font-semibold rounded-full px-4 py-2"
-		>
-			{readMore ? 'Show Less' : 'Show More'}
-		</button>
+		<li>
+			<button
+				on:click={onReadMore}
+				class="text-yellow-300 inline md:hidden font-semibold rounded-full px-4 py-2"
+			>
+				{readMore ? 'Show Less' : 'Show More'}
+			</button>
+		</li>
 	</ul>
 </section>
