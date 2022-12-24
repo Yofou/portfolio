@@ -7,8 +7,7 @@ export interface Props {
 }
 
 const { title } = Astro.props;
-
-const { pathname } = Astro.url
+const { pathname, origin } = Astro.url
 ---
 
 <!DOCTYPE html>
@@ -16,8 +15,14 @@ const { pathname } = Astro.url
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel='canonical' href={origin + '/'} />
+		<meta name="description" content="Nathan Portfolio Site & Where they put their short blogs reviewing Web Developement tech.">
 		<meta name="generator" content={Astro.generator} />
+		<meta property="og:title" content={title ?? 'Nathans Portfolio'}>
+		<meta property="og:description" content="Nathan Portfolio & Where they put their short blogs reviewing Web Developement tech.">
+		<meta property="og:type" content="article">
+		<meta property="og:image" content={`${origin}/portfolio-thumbnail.png`}>
 		<title>{title}</title>
 	</head>
 	<body>
