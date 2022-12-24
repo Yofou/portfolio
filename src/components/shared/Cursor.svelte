@@ -62,8 +62,9 @@
 		}
 
 		if (!element) {
-			coords.set({ x: event.x, y: event.y })
-        .then(() => opacity.set(0, { delay: 250 }));
+      coords.set({ x: event.x, y: event.y }, {
+        hard: $coords.x === 0 && $coords.y === 0
+      }).then(() => opacity.set(0, { delay: 250 }));
 		}
 	};
 
