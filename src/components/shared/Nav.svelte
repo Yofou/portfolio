@@ -33,8 +33,8 @@
         py-1
       "
 		href="/blogs"
-		class:passthrough={url == '/blogs'}
-		tabindex={url == '/blogs' ? -1 : 0}
+		class:passthrough={url.includes('/blogs')}
+		tabindex={url.includes('/blogs') ? -1 : 0}
 	>
 		Blogs
 	</a>
