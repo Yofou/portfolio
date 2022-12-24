@@ -10,7 +10,10 @@ import tailwind from "@astrojs/tailwind";
 import { astroImageTools } from "astro-imagetools";
 
 // https://astro.build/config
+import sitemap from "@astrojs/sitemap";
+
+// https://astro.build/config
 export default defineConfig({
-	integrations: [svelte(), tailwind(), astroImageTools],
-	site: 'https://www.yofou.dev'
+  integrations: [svelte(), tailwind(), astroImageTools, sitemap()],
+  site: 'https://www.yofou.dev'
 });
