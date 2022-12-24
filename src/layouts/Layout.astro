@@ -1,9 +1,14 @@
 ---
+import "../styles/app.css"
+import Nav from "../components/shared/Nav.svelte"
+import Cursor from "../components/shared/Cursor.svelte";
 export interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+
+const { pathname } = Astro.url
 ---
 
 <!DOCTYPE html>
@@ -16,20 +21,24 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<main
+			class="
+      			w-full
+      			justify-center
+      			min-h-screen
+      			grid-flow-row
+      			auto-rows-max
+      			grid grid-cols-container
+      			py-20
+      			px-4
+      			text-white
+      			selection:bg-purple-500
+    		"
+		>
+			<Nav url={pathname} />
+  			<slot />
+		</main>
+
+		<Cursor client:load />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>
