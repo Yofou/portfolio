@@ -13,7 +13,10 @@ import { astroImageTools } from "astro-imagetools";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
+import robotsTxt from 'astro-robots-txt';
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [svelte(), tailwind(), astroImageTools, sitemap()],
+	integrations: [svelte(), tailwind(), astroImageTools, sitemap(), robotsTxt({ sitemap: false })],
   site: 'https://www.yofou.dev'
 });
