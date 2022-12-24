@@ -11,5 +11,6 @@ import { astroImageTools } from "astro-imagetools";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [svelte(), tailwind(), astroImageTools]
+	integrations: [svelte(), tailwind(), astroImageTools],
+	site: 'https://www.yofou.dev'
 });
