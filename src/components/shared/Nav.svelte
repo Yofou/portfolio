@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-
-	$: url = $page.url.pathname;
+	export let url: string
 </script>
 
 <nav

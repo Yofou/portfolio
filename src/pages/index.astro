@@ -1,14 +1,12 @@
-<script lang="ts">
-  import Experience from "$components/index/Experience.svelte";
-  import WhatIveUsed from "$components/index/WhatIveUsed.svelte";
-  import HrTitle from "$components/shared/HrTitle.svelte";
-  import NoBlogs from "$components/shared/NoBlogs.svelte";
-</script>
+---
+import Layout from '../layouts/Layout.astro';
+import Experience from "../components/index/Experience.svelte";
+import WhatIveUsed from "../components/index/WhatIveUsed.svelte";
+import HrTitle from "../components/shared/HrTitle.svelte";
+import NoBlogs from "../components/shared/NoBlogs.svelte";
+---
 
-<svelte:head>
-  <title>Nathans | Home</title>
-</svelte:head>
-
+<Layout title="Nathans | Portfolio">
 <header
 	class="
         w-full
@@ -62,7 +60,8 @@
 <Experience />
 
 <HrTitle>What I've Worked with</HrTitle>
-<WhatIveUsed />
+<WhatIveUsed client:visible />
 
 <HrTitle>Blogs</HrTitle>
 <NoBlogs />
+</Layout>
