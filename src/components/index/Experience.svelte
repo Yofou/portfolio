@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ExperienceCard from './ExperienceCard.svelte';
+	import webrevived from "../../../public/webrevived.jpg?w=400&h=400&format=webp"
 </script>
 
 <section class="flex flex-col gap-4">
@@ -18,7 +19,7 @@
 		href="https://www.webrevived.com/"
 		description="My Time at Web Revived started of with small, young & enthusiastic team which taught me how to interact with others team members and work with them efficently & how to plan & execute making web-apps."
 		position="Frontend"
-		src="https://avatars.githubusercontent.com/u/85769836?s=400&u=61584ac8d57eff334e4f4f430951128c5d84e386&v=4"
+		src={webrevived}
 		classImg="justify-self-center self-center mix-blend-lighten w-[130px]"
 		width="400"
 		height="400"

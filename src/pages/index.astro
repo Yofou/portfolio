@@ -4,6 +4,7 @@ import Experience from "../components/index/Experience.svelte";
 import WhatIveUsed from "../components/index/WhatIveUsed.svelte";
 import HrTitle from "../components/shared/HrTitle.svelte";
 import NoBlogs from "../components/shared/NoBlogs.svelte";
+import profile from "../../public/profile.png?w=220&h=250&format=webp"
 ---
 
 <Layout title="Nathans | Portfolio">
@@ -49,10 +50,10 @@ import NoBlogs from "../components/shared/NoBlogs.svelte";
           row-start-1 row-end-3
           object-cover
         "
-		src="/profile.png"
+		src={profile}
 		alt=""
-		width="512"
-		height="512"
+		width="220"
+		height="250"
 	/>
 </header>
 
