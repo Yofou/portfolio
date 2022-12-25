@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  	import { onMount } from 'svelte';
 	import { spring, tweened } from 'svelte/motion';
 
 	const DEFAULTS = {
@@ -9,7 +9,7 @@
 	};
 	let borderColor = DEFAULTS.borderColor;
 	let element: HTMLElement | undefined = undefined;
-  let shouldMouseEvent = true
+  	let shouldMouseEvent = true
 	$: if (element) {
 		const styles = getComputedStyle(element);
 		const rect = element.getBoundingClientRect();
@@ -51,7 +51,7 @@
 		duration: 100
 	});
 
-	const onMove = (event: MouseEvent) => {
+	const onMove = (event: Event) => {
 		if (
 			event.target instanceof HTMLParagraphElement ||
 			event.target instanceof HTMLHeadingElement
@@ -62,9 +62,27 @@
 		}
 
 		if (!element) {
-      coords.set({ x: event.x, y: event.y }, {
-        hard: $coords.x === 0 && $coords.y === 0
-      }).then(() => opacity.set(0, { delay: 250 }));
+			console.log('debugging')
+			let x: number, y: number
+			if (event instanceof MouseEvent) {
+				x = event.x
+				y = event.y
+
+
+				coords.set({ x, y }, {
+        			hard: $coords.x === 0 && $coords.y === 0
+      			}).then(() => opacity.set(0, { delay: 250 }));
+			} else if (event instanceof TouchEvent) {
+				console.log('hit')
+				const first = event.changedTouches[0]
+				x = first.clientX
+				y = first.clientY
+
+				coords.set({ x, y }, {
+        			hard: $coords.x === 0 && $coords.y === 0
+      			}).then(() => opacity.set(0, { delay: 250 }));
+
+			}
 		}
 	};
 
@@ -128,9 +146,9 @@
   const onFocusOut = () => {
     element = undefined
     morph.set({
-      width: DEFAULTS.width,
-			height: DEFAULTS.width,
-			borderRadius: 900
+    	width: DEFAULTS.width,
+		height: DEFAULTS.width,
+		borderRadius: 900
     })
     $opacity = 0
     shouldMouseEvent = true
@@ -150,10 +168,11 @@
 	on:mouseover={shouldMouseEvent ? onOver: undefined}
 	on:mousedown={onMouseDown}
 	on:mouseup={onMouseUp}
+	on:touchmove={onMove}
 	on:scroll={resyncCursor}
-  on:resize={resyncCursor}
-  on:focusin={onFocusIn}
-  on:focusout={onFocusOut}
+	on:resize={resyncCursor}
+	on:focusin={onFocusIn}
+	on:focusout={onFocusOut}
 />
 
 <div class="fixed z-10 top-0 left-0 w-screen h-screen pointer-events-none noise-bg">
