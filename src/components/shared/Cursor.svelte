@@ -77,7 +77,7 @@
 				y = first.clientY
 
 				coords.set({ x, y }, {
-        			hard: true
+        			soft: true
       			}).then(() => opacity.set(0, { delay: 250 }));
 
 			}
