@@ -62,7 +62,6 @@
 		}
 
 		if (!element) {
-			console.log('debugging')
 			let x: number, y: number
 			if (event instanceof MouseEvent) {
 				x = event.x
@@ -73,13 +72,12 @@
         			hard: $coords.x === 0 && $coords.y === 0
       			}).then(() => opacity.set(0, { delay: 250 }));
 			} else if (event instanceof TouchEvent) {
-				console.log('hit')
 				const first = event.changedTouches[0]
 				x = first.clientX
 				y = first.clientY
 
 				coords.set({ x, y }, {
-        			hard: $coords.x === 0 && $coords.y === 0
+        			hard: true
       			}).then(() => opacity.set(0, { delay: 250 }));
 
 			}
