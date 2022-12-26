@@ -7,7 +7,7 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
-import { astroImageTools } from "astro-imagetools";
+import image from "@astrojs/image";
 
 // https://astro.build/config
 import sitemap from "@astrojs/sitemap";
@@ -24,7 +24,9 @@ export default defineConfig({
 	integrations: [
 		svelte(), 
 		tailwind(), 
-		astroImageTools, 
+		image({
+			serviceEntryPoint: '@astrojs/image/sharp'
+		}), 
 		sitemap({
 			customPages: [`${site}/`, `${site}/blogs`]
 		}), 

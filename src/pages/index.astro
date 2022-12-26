@@ -5,7 +5,10 @@ import Experience from "../components/index/Experience.svelte";
 import WhatIveUsed from "../components/index/WhatIveUsed.svelte";
 import HrTitle from "../components/shared/HrTitle.svelte";
 import NoBlogs from "../components/shared/NoBlogs.svelte";
-import profile from "../images/profile.png?w=220&h=250&format=webp"
+import { getImage } from "@astrojs/image"
+
+const { src: profile } = await getImage({ src: 'profile.png', format: 'webp', width: 220, height: 250, alt: '',  })
+const { src: webrevived } = await getImage({ src: 'webrevived.jpg', format: 'webp', width: 400, height: 400, alt: '',  })
 ---
 
 <Layout title="Nathans | Portfolio">
@@ -59,7 +62,7 @@ import profile from "../images/profile.png?w=220&h=250&format=webp"
 </header>
 
 <HrTitle>Experience</HrTitle>
-<Experience />
+<Experience webrevived={webrevived} />
 
 <HrTitle>What I've Worked with</HrTitle>
 <WhatIveUsed client:visible />

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ExperienceCard from './ExperienceCard.svelte';
-	import webrevived from "../../images/webrevived.jpg?w=400&h=400&format=webp"
+	export let webrevived: string
 </script>
 
 <section class="flex flex-col gap-4">
