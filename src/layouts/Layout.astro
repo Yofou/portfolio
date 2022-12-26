@@ -10,8 +10,8 @@ export interface Props {
 }
 
 const { title } = Astro.props;
-const canonicalURL = `${Astro.site?.origin}${Astro.url.pathname}`
-const socialImageURL = `${Astro.site?.origin}/portfolio-thumbnail.png`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const socialImageURL = new URL('/portfolio-thumbnail.png', Astro.site)
 ---
 
 <!DOCTYPE html>

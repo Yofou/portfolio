@@ -16,7 +16,7 @@ import sitemap from "@astrojs/sitemap";
 import robotsTxt from 'astro-robots-txt';
 
 // https://astro.build/config
-import vercel from "@astrojs/vercel/edge";
+import vercel from "@astrojs/vercel/serverless";
 
 const site = 'https://www.yofou.dev'
 // https://astro.build/config
@@ -34,5 +34,8 @@ export default defineConfig({
 	],
   	site,
   	output: 'server',
-  	adapter: vercel()
+	adapter: vercel(),
+	experimental: {
+		prerender: true
+	}
 });
