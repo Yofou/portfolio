@@ -6,8 +6,8 @@ import HrTitle from "../components/shared/HrTitle.svelte";
 import NoBlogs from "../components/shared/NoBlogs.svelte";
 import { getImage } from "@astrojs/image"
 
-const { src: profile } = await getImage({ src: 'profile.png', format: 'webp', width: 220, height: 250, alt: '',  })
-const { src: webrevived } = await getImage({ src: 'webrevived.jpg', format: 'webp', width: 400, height: 400, alt: '',  })
+const { src: profile } = await getImage({ src: '/profile.png', format: 'webp', width: 220, height: 250, alt: '',  })
+const { src: webrevived } = await getImage({ src: '/webrevived.jpg', format: 'webp', width: 400, height: 400, alt: '',  })
 ---
 
 <Layout title="Nathans | Portfolio">
