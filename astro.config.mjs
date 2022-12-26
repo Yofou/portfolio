@@ -16,7 +16,7 @@ import sitemap from "@astrojs/sitemap";
 import robotsTxt from 'astro-robots-txt';
 
 // https://astro.build/config
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel/static";
 
 const site = 'https://www.yofou.dev'
 // https://astro.build/config
@@ -27,17 +27,12 @@ export default defineConfig({
 		image({
 			serviceEntryPoint: '@astrojs/image/sharp'
 		}), 
-		sitemap({
-			customPages: [`${site}/`, `${site}/blogs`]
-		}), 
+		sitemap(), 
 		robotsTxt({
     		sitemap: false
   		}),
 	],
   	site,
-  	output: 'server',
-	adapter: vercel(),
-	experimental: {
-		prerender: true
-	}
+  	output: 'static',
+	adapter: vercel()
 });
