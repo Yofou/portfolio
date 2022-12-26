@@ -16,7 +16,7 @@ import sitemap from "@astrojs/sitemap";
 import robotsTxt from 'astro-robots-txt';
 
 // https://astro.build/config
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel/edge";
 
 const site = 'https://www.yofou.dev'
 // https://astro.build/config
