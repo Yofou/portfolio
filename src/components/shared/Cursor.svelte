@@ -1,7 +1,40 @@
 <script lang="ts">
+    import { isPreviewing } from '@builder.io/sdk-svelte';
   	import { onMount } from 'svelte';
 	import { spring, tweened } from 'svelte/motion';
 
+	type Modes = null | "morph" | "carousel"
+	let modes: Modes = null 
+	let modeElement: HTMLElement | undefined = undefined
+
+	const isModes = (value: string | null): value is Modes => {
+		if (value === null) return true
+		return ["morph", "carousel"].includes(value)
+	}
+
+	const searchParentModes = (node: Element, mode: Modes) => {
+		let parent: Element | null = node
+		while (parent)  {
+			if (parent.getAttribute('data-mode') === mode) return true	
+			if(parent.tagName === "BODY") return false
+			parent = parent.parentElement
+		}
+
+		return false
+	}
+
+	const searchParentDataColor = (node: Element) => {
+		let parent: Element | null = node
+		while (parent)  {
+			if (parent.getAttribute('data-mode')) return parent.getAttribute('data-mode') as Modes
+			if(parent.tagName === "BODY") return null
+			parent = parent.parentElement
+		}
+
+		return null
+	}
+
+	const isPreview = isPreviewing()
 	const DEFAULTS = {
 		width: 40,
 		height: 40,
@@ -10,7 +43,7 @@
 	let borderColor = DEFAULTS.borderColor;
 	let element: HTMLElement | undefined = undefined;
   	let shouldMouseEvent = true
-	$: if (element) {
+	$: if (element && modes === "morph") {
 		const styles = getComputedStyle(element);
 		const rect = element.getBoundingClientRect();
 		const width = parseInt(styles.width);
@@ -61,12 +94,11 @@
 			$opacity = 1;
 		}
 
-		if (!element) {
+		if (modes != 'morph') {
 			let x: number, y: number
 			if (event instanceof MouseEvent) {
 				x = event.x
 				y = event.y
-
 
 				coords.set({ x, y }, {
         			hard: $coords.x === 0 && $coords.y === 0
@@ -79,14 +111,13 @@
 				coords.set({ x, y }, {
         			soft: true
       			}).then(() => opacity.set(0, { delay: 250 }));
-
 			}
 		}
 	};
 
 	const onOver = (event: MouseEvent) => {
-		element = undefined;
 		borderColor = DEFAULTS.borderColor;
+		element = undefined
 
 		morph.set({
 			width: DEFAULTS.width,
@@ -96,8 +127,19 @@
 
 		if (event.target instanceof HTMLElement) {
 			const styles = getComputedStyle(event.target);
+			if (modes === "carousel" && modeElement && (modeElement.contains(event.target) || searchParentModes(event.target, 'carousel'))) {
+			} else {
+				modeElement = undefined
+				modes = null
+				const _mode = event.target.getAttribute('data-mode') ?? searchParentDataColor(event.target)
+				if (isModes(_mode)) {
+					modes = _mode ?? (styles.cursor === 'pointer' ? 'morph' : null)
+					modeElement = event.target
+				}
+			}
+
 			if (styles.cursor === 'pointer') {
-        $scale = 1
+        		$scale = 1
 				element = event.target;
 			}
 		}
@@ -135,6 +177,8 @@
   const onFocusIn = (event: FocusEvent) => {
     if (event.target instanceof HTMLBodyElement) return
     if (event.target instanceof HTMLElement) {
+	  const _mode = event.target.getAttribute('data-mode')				
+	  if (isModes(_mode)) modes = _mode ?? 'morph'
       $opacity = 1
       element = event.target
       shouldMouseEvent = false
@@ -143,6 +187,7 @@
 
   const onFocusOut = () => {
     element = undefined
+	modes = null
     morph.set({
     	width: DEFAULTS.width,
 		height: DEFAULTS.width,
@@ -173,18 +218,21 @@
 	on:focusout={onFocusOut}
 />
 
-<div class="fixed z-10 top-0 left-0 w-screen h-screen pointer-events-none noise-bg">
-	<div
-		class="cursor rounded-[var(--borderRadius)] border border-[color:var(--borderColor)]"
-		style:--x={`${$coords.x?.toPrecision()}px`}
-		style:--y={`${$coords.y}px`}
-		style:--width={`${$morph.width * $scale}px`}
-		style:--height={`${$morph.height * $scale}px`}
-		style:--borderRadius={`${$morph.borderRadius}px`}
-		style:--borderColor={borderColor}
-		style:--opacity={$opacity}
-	/>
-</div>
+
+{#if !isPreview}
+	<div class="fixed z-10 top-0 left-0 w-screen h-screen pointer-events-none noise-bg">
+		<div
+			class="cursor rounded-[var(--borderRadius)] border border-[color:var(--borderColor)]"
+			style:--x={`${$coords.x?.toPrecision()}px`}
+			style:--y={`${$coords.y}px`}
+			style:--width={`${$morph.width * $scale}px`}
+			style:--height={`${$morph.height * $scale}px`}
+			style:--borderRadius={`${$morph.borderRadius}px`}
+			style:--borderColor={borderColor}
+			style:--opacity={$opacity}
+		/>
+	</div>
+{/if}
 
 <style>
 	.cursor {

@@ -7,9 +7,10 @@ import Nav from "../components/shared/Nav.svelte"
 import Cursor from "../components/shared/Cursor.svelte";
 export interface Props {
 	title: string;
+	isPreviewing?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, isPreviewing } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const socialImageURL = new URL('/portfolio-thumbnail.png', Astro.site)
 ---
@@ -49,6 +50,6 @@ const socialImageURL = new URL('/portfolio-thumbnail.png', Astro.site)
   			<slot />
 		</main>
 
-		<Cursor client:idle />
+		{(!isPreviewing ?? false) && <Cursor client:idle />}
 	</body>
 </html>

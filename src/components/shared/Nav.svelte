@@ -12,12 +12,12 @@
 >
 	<a
 		class="
-        font-semibold
-        rounded-full
-        hover:text-yellow-300 hover:underline
-        px-2
-        py-1
-      "
+        	font-semibold
+        	rounded-full
+        	hover:text-yellow-300 hover:underline
+        	px-2
+        	py-1
+      	"
 		href="/"
 		class:passthrough={url == '/'}
 		tabindex={url == '/' ? -1 : 0}
