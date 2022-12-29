@@ -17,7 +17,7 @@
 	<div data-mode="carousel" class="embla__carousel grid grid-flow-col auto-cols-[540px]">
 		{#each blogs as blog}
 			<div class="embla__slide relative min-h-[700px] group overflow-hidden rounded-[10px] bg-purple-300">
-				<img class="absolute w-full h-full object-cover object-bottom pointer-events-none rounded-b-[200px]" src={blog.thumbnail} alt="">
+				<img class="absolute w-full h-full object-cover object-bottom pointer-events-none rounded-b-[100px]" src={blog.thumbnail} alt="">
 				<div class="bg-purple-300 px-8 py-5 absolute z-10 bottom-0 w-full items-start h-[250px] translate-y-[100px] group-hover:translate-y-[0px] flex flex-col transition-transform left-0">
 					<div class="flex justify-between w-full items-center">
 						<h2 class="uppercase text-[1.5rem] text-yellow-300">{blog.title}</h2>
