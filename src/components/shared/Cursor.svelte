@@ -43,7 +43,7 @@
 	let borderColor = DEFAULTS.borderColor;
 	let element: HTMLElement | undefined = undefined;
   	let shouldMouseEvent = true
-	$: if (element && modes === "morph") {
+	$: if (element && (modes === "morph" || modes === "carousel")) {
 		const styles = getComputedStyle(element);
 		const rect = element.getBoundingClientRect();
 		const width = parseInt(styles.width);
@@ -128,6 +128,10 @@
 		if (event.target instanceof HTMLElement) {
 			const styles = getComputedStyle(event.target);
 			if (modes === "carousel" && modeElement && (modeElement.contains(event.target) || searchParentModes(event.target, 'carousel'))) {
+				if (event.target instanceof HTMLAnchorElement) {
+					modes = "morph"
+					element = event.target
+				}
 			} else {
 				modeElement = undefined
 				modes = null
