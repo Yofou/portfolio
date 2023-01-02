@@ -3,6 +3,9 @@
     import HrTitle from "../shared/HrTitle.svelte";
 	import Title from "./Title.svelte"
 	import Link from "./Link.svelte"
+	import Prism from "svelte-prism"
+	import "prism-themes/themes/prism-duotone-dark.min.css"
+    import InlineBox from "./InlineBox.svelte";
 
 	const CUSTOM_COMPONENT: RegisteredComponent[] = [
 		{
@@ -10,7 +13,7 @@
 			component: HrTitle,
 			inputs: [],
 			builtIn: true,
-			canHaveChildren: true
+			canHaveChildren: true,
 		},
 		{
 			name: 'Title',
@@ -29,7 +32,30 @@
 				}
 			],
 			builtIn: true,
-			canHaveChildren: true
+			canHaveChildren: true,
+			noWrap: true,
+		},
+		{
+			name: 'Code',
+			component: Prism,
+			inputs: [
+				{
+					name: 'lang',
+					type: 'string',
+				},
+				{
+					name: 'source',
+					type: 'code',
+				},
+			],
+			builtIn: true,
+		},
+		{
+			name: 'InlineBox',
+			component: InlineBox,
+			inputs: [],
+			builtIn: true,
+			canHaveChildren: true,
 		},
 	]
 

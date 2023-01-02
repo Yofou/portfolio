@@ -22,6 +22,7 @@ specifiers:
   prismjs: ^1.29.0
   sharp: ^0.31.3
   svelte: ^3.46.4
+  svelte-prism: ^1.1.6
   tailwindcss: ^3.0.24
   ts-luxon: ^4.0.1
 
@@ -45,6 +46,7 @@ dependencies:
   prismjs: 1.29.0
   sharp: 0.31.3
   svelte: 3.55.0
+  svelte-prism: 1.1.6
   tailwindcss: 3.2.4
   ts-luxon: 4.0.1
 
@@ -4089,6 +4091,10 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
+  /prism-svelte/0.4.7:
+    resolution: {integrity: sha512-yABh19CYbM24V7aS7TuPYRNMqthxwbvx6FF/Rw920YbyBWO3tnyPIqRMgHuSVsLmuHkkBS1Akyof463FVdkeDQ==}
+    dev: false
+
   /prism-themes/1.9.0:
     resolution: {integrity: sha512-tX2AYsehKDw1EORwBps+WhBFKc2kxfoFpQAjxBndbZKr4fRmMkv47XN0BghC/K1qwodB1otbe4oF23vUTFDokw==}
     dev: false
@@ -4909,6 +4915,13 @@ packages:
       sorcery: 0.10.0
       strip-indent: 3.0.0
       svelte: 3.55.0
+    dev: false
+
+  /svelte-prism/1.1.6:
+    resolution: {integrity: sha512-FEVBqD1wcSKYwRpgaMGRfEIQPquKMwo+vl91lnFHhQCtTivxgkCS6ZWNOyvZGRsNbWk50fYZOWOp3xXIBWNeSw==}
+    dependencies:
+      prism-svelte: 0.4.7
+      prismjs: 1.29.0
     dev: false
 
   /svelte/3.55.0:

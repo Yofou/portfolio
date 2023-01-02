@@ -7,7 +7,6 @@ import BlogsCarousel from "../components/shared/BlogsCarousel.svelte"
 import { getImage } from "@astrojs/image"
 import { getAllContent } from '@builder.io/sdk-svelte';
 import { DateTime } from "luxon"
-import { Prism } from '@astrojs/prism';
 
 const { src: profile } = await getImage({ src: '/profile.png', format: 'webp', width: 220, height: 250, alt: '',  })
 const { src: webrevived } = await getImage({ src: '/webrevived.jpg', format: 'webp', width: 400, height: 400, alt: '',  })
@@ -86,5 +85,4 @@ const blogs = content.results.map(result => ({
 
 	<HrTitle>Blogs</HrTitle>
 	<BlogsCarousel client:visible {blogs} />
-	<Prism lang="js" code="const foo = 'hello world';"  />
 </Layout>

@@ -46,13 +46,11 @@
 	$: if (element && (modes === "morph" || modes === "carousel")) {
 		const styles = getComputedStyle(element);
 		const rect = element.getBoundingClientRect();
-		const width = parseInt(styles.width);
-		const height = parseInt(styles.height);
 		borderColor = element.getAttribute('data-color') ?? DEFAULTS.borderColor;
-		coords.set({ x: rect.x + width / 2, y: rect.y + height / 2 });
+		coords.set({ x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 });
 		morph.set({
-			width,
-			height,
+			width: rect.width,
+			height: rect.height,
 			borderRadius: parseInt(styles.borderRadius)
 		});
 	}
@@ -76,9 +74,9 @@
 		}
 	);
 
-  const scale = tweened(1, {
-    duration: 100,
-  });
+  	const scale = tweened(1, {
+    	duration: 100,
+  	});
 
 	const opacity = tweened(0, {
 		duration: 100
@@ -237,7 +235,7 @@
 	<div class="fixed z-10 top-0 left-0 w-screen h-screen pointer-events-none noise-bg">
 		<div
 			class="cursor relative rounded-[var(--borderRadius)] border border-[color:var(--borderColor)]"
-			style:--x={`${$coords.x?.toPrecision()}px`}
+			style:--x={`${$coords.x}px`}
 			style:--y={`${$coords.y}px`}
 			style:--width={`${$morph.width * $scale}px`}
 			style:--height={`${$morph.height * $scale}px`}
