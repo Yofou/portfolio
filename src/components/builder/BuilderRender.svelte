@@ -1,10 +1,11 @@
 <script lang="ts">
+	import "prism-themes/themes/prism-duotone-dark.min.css"
+	import "@fontsource/fira-mono"
 	import { RenderContent, RegisteredComponent } from "@builder.io/sdk-svelte"
     import HrTitle from "../shared/HrTitle.svelte";
 	import Title from "./Title.svelte"
 	import Link from "./Link.svelte"
-	import Prism from "svelte-prism"
-	import "prism-themes/themes/prism-duotone-dark.min.css"
+	import Code from "./Code.svelte"
     import InlineBox from "./InlineBox.svelte";
 
 	const CUSTOM_COMPONENT: RegisteredComponent[] = [
@@ -37,7 +38,7 @@
 		},
 		{
 			name: 'Code',
-			component: Prism,
+			component: Code,
 			inputs: [
 				{
 					name: 'lang',

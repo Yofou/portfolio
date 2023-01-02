@@ -1,10 +1,27 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import HrTitle from "../../components/shared/HrTitle.svelte"
-import NoBlogs from '../../components/shared/NoBlogs.svelte';
+import BlogsCarousel from '../../components/shared/BlogsCarousel.svelte';
+import { getAllContent } from '@builder.io/sdk-svelte';
+import { DateTime } from "luxon"
+
+const content = await getAllContent({
+	model: 'page',
+	limit: 0,
+	apiKey: import.meta.env.api_key
+})
+
+const blogs = content.results.map(result => ({
+	title: result?.data?.title,
+	description: result?.data?.description,
+	thumbnail: result?.data?.thumbnail,
+	href: result?.data?.url,
+	category: result?.data?.category,
+	createdAt: DateTime.fromMillis(result?.createdDate).toFormat('D') 
+})) 
 ---
 
 <Layout title="Nathans | Blogs">
 	<HrTitle class="mt-2">Blogs</HrTitle>
-	<NoBlogs />
+	<BlogsCarousel blogs={blogs} />
 </Layout>

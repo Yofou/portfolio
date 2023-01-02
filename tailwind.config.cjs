@@ -7,7 +7,8 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				jost: ["'Jost'", ...defaultTheme.fontFamily.sans],
-				merriweather: ["'Merriweather'", ...defaultTheme.fontFamily.sans]
+				merriweather: ["'Merriweather'", ...defaultTheme.fontFamily.sans],
+				fira: ["'Fira Mono'", ...defaultTheme.fontFamily.mono],
 			},
 			gridTemplateColumns: {
 				container: 'minmax(0, var(--container, 1250px))'
