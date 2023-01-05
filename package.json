@@ -33,6 +33,7 @@
     "svelte": "^3.46.4",
     "svelte-prism": "^1.1.6",
     "tailwindcss": "^3.0.24",
+    "tailwindcss-hocus": "^0.0.7",
     "ts-luxon": "^4.0.1"
   },
   "devDependencies": {
