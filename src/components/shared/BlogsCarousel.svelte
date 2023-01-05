@@ -20,8 +20,8 @@
 <svelte:window bind:innerWidth />
 
 {#if blogs.length}
-	<div class="embla" use:embla={{ options: { align: 'start', active: isMd }, plugins: [] }}>
-		<div data-mode={isMd ? "carousel" : ""} class="embla__carousel grid gap-4 grid-flow-row md:grid-flow-col md:auto-cols-[540px]">
+	<div data-mode={isMd ? "carousel" : ""} class="embla" use:embla={{ options: { align: 'center', active: isMd }, plugins: [] }}>
+		<div class="embla__carousel grid gap-4 grid-flow-row md:grid-flow-col md:auto-cols-[540px]">
 		{#each blogs as blog}
 			<div class="embla__slide relative min-h-[450px] md:min-h-[700px] group overflow-hidden rounded-[10px] bg-purple-300">
 				<img class="absolute w-full h-full object-cover object-bottom pointer-events-none rounded-b-[100px]" src={blog.thumbnail} alt="">
@@ -47,5 +47,6 @@
 	.embla {
 		position: relative;
 		overflow: hidden;
+		grid-column: 1 / -1;
 	}
 </style>

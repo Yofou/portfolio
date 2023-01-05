@@ -11,7 +11,7 @@ module.exports = {
 				fira: ["'Fira Mono'", ...defaultTheme.fontFamily.mono],
 			},
 			gridTemplateColumns: {
-				container: 'minmax(0, var(--container, 1250px))'
+				container: 'minmax(0, 1fr) minmax(0, var(--container, 1250px)) minmax(0, 1fr)',
 			},
 			colors: {
 				yellow: {

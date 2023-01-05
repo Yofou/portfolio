@@ -36,7 +36,6 @@ if (!description) description = "Nathan Portfolio Site & Where they put their sh
 		<main
 			class="
       			w-full
-      			justify-center
       			min-h-screen
       			grid-flow-row
       			auto-rows-max
@@ -55,3 +54,9 @@ if (!description) description = "Nathan Portfolio Site & Where they put their sh
 		{(!isPreviewing ?? false) && <Cursor client:idle />}
 	</body>
 </html>
+
+<style is:global>
+	main > *, main > astro-island > *  {
+	   grid-column: 2 / 3;
+	}
+</style>
