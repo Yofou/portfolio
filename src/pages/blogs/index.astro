@@ -23,5 +23,5 @@ const blogs = content.results.map(result => ({
 
 <Layout title="Nathans | Blogs">
 	<HrTitle class="mt-2">Blogs</HrTitle>
-	<BlogsCarousel blogs={blogs} />
+	<BlogsCarousel client:load blogs={blogs} />
 </Layout>
