@@ -7,11 +7,14 @@ import Nav from "../components/shared/Nav.svelte"
 import Cursor from "../components/shared/Cursor.svelte";
 export interface Props {
 	title: string;
+	description?: string;
+	isPreviewing?: boolean;
 }
 
-const { title } = Astro.props;
+let { title, isPreviewing, description } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const socialImageURL = new URL('/portfolio-thumbnail.png', Astro.site)
+if (!description) description = "Nathan Portfolio Site & Where they put their short blogs reviewing Web Developement tech."
 ---
 
 <!DOCTYPE html>
@@ -21,10 +24,10 @@ const socialImageURL = new URL('/portfolio-thumbnail.png', Astro.site)
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<link rel='canonical' href={canonicalURL} />
-		<meta name="description" content="Nathan Portfolio Site & Where they put their short blogs reviewing Web Developement tech.">
+		<meta name="description" content={description}>
 		<meta name="generator" content={Astro.generator} />
-		<meta property="og:title" content={title ?? 'Nathans Portfolio'}>
-		<meta property="og:description" content="Nathan Portfolio & Where they put their short blogs reviewing Web Developement tech.">
+		<meta property="og:title" content={title}>
+		<meta property="og:description" content={description}>
 		<meta property="og:type" content="article">
 		<meta property="og:image" content={socialImageURL}>
 		<title>{title}</title>
@@ -49,6 +52,6 @@ const socialImageURL = new URL('/portfolio-thumbnail.png', Astro.site)
   			<slot />
 		</main>
 
-		<Cursor client:idle />
+		{(!isPreviewing ?? false) && <Cursor client:idle />}
 	</body>
 </html>

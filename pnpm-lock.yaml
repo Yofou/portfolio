@@ -2,35 +2,57 @@ lockfileVersion: 5.4
 
 specifiers:
   '@astrojs/image': ^0.12.1
+  '@astrojs/prism': ^1.0.2
   '@astrojs/sitemap': ^1.0.0
   '@astrojs/svelte': ^1.0.2
   '@astrojs/tailwind': ^2.1.3
   '@astrojs/vercel': ^2.3.6
+  '@builder.io/sdk-svelte': ^0.0.9
+  '@fontsource/fira-mono': ^4.5.10
   '@fontsource/merriweather': ^4.5.14
   '@tailwindcss/forms': ^0.5.3
+  '@types/luxon': ^3.1.0
   astro: ^1.7.2
   astro-robots-txt: ^0.3.10
+  embla-carousel-svelte: ^7.0.5
+  luxon: ^3.1.1
   node-sass: ^8.0.0
   prettier: ^2.8.1
   prettier-plugin-astro: ^0.7.0
+  prism-themes: ^1.9.0
+  prismjs: ^1.29.0
   sharp: ^0.31.3
   svelte: ^3.46.4
+  svelte-prism: ^1.1.6
   tailwindcss: ^3.0.24
+  tailwindcss-hocus: ^0.0.7
+  ts-luxon: ^4.0.1
 
 dependencies:
   '@astrojs/image': 0.12.1_sharp@0.31.3
+  '@astrojs/prism': 1.0.2
   '@astrojs/sitemap': 1.0.0
   '@astrojs/svelte': 1.0.2_n6slfxl6zbnorjhbpksdymwfb4
   '@astrojs/tailwind': 2.1.3_tailwindcss@3.2.4
   '@astrojs/vercel': 2.3.6
+  '@builder.io/sdk-svelte': 0.0.9
+  '@fontsource/fira-mono': 4.5.10
   '@fontsource/merriweather': 4.5.14
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
+  '@types/luxon': 3.1.0
   astro: 1.7.2
   astro-robots-txt: 0.3.10
+  embla-carousel-svelte: 7.0.5_svelte@3.55.0
+  luxon: 3.1.1
   node-sass: 8.0.0
+  prism-themes: 1.9.0
+  prismjs: 1.29.0
   sharp: 0.31.3
   svelte: 3.55.0
+  svelte-prism: 1.1.6
   tailwindcss: 3.2.4
+  tailwindcss-hocus: 0.0.7_tailwindcss@3.2.4
+  ts-luxon: 4.0.1
 
 devDependencies:
   prettier: 2.8.1
@@ -456,6 +478,14 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
+  /@builder.io/sdk-svelte/0.0.9:
+    resolution: {integrity: sha512-s9et9AxgEswqe/+EkFO+PlgqYuWHgxAPd71+Fjje0cLZD4BlznTwH3W/WcsQJ5+OpdzPV01xSmTYZf0NnEeD9g==}
+    dependencies:
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /@emmetio/abbreviation/2.2.3:
     resolution: {integrity: sha512-87pltuCPt99aL+y9xS6GPZ+Wmmyhll2WXH73gG/xpGcQ84DRnptBsI2r0BeIQ0EB/SQTOe2ANPqFqj3Rj5FOGA==}
     dependencies:
@@ -489,6 +519,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@fontsource/fira-mono/4.5.10:
+    resolution: {integrity: sha512-bxUnRP8xptGRo8YXeY073DSpfK74XpSb0ZyRNpHV9WvLnJ7TwPOjZll8hTMin7zLC6iOp59pDZ8EQDj1gzgAQQ==}
+    dev: false
 
   /@fontsource/merriweather/4.5.14:
     resolution: {integrity: sha512-kDMIAokOvE9bYf+CDmEWzV3xtR8cRJlw/BipjhxqD9MIRZfU348cZ8xhHhmPXmxRiEjZLor4xxHXqps7eCvGQg==}
@@ -757,6 +791,10 @@ packages:
 
   /@types/json5/0.0.30:
     resolution: {integrity: sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==}
+    dev: false
+
+  /@types/luxon/3.1.0:
+    resolution: {integrity: sha512-gCd/HcCgjqSxfMrgtqxCgYk/22NBQfypwFUG7ZAyG/4pqs51WLTcUzVp1hqTbieDYeHS3WoVEh2Yv/2l+7B0Vg==}
     dev: false
 
   /@types/mdast/3.0.10:
@@ -1649,6 +1687,19 @@ packages:
 
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
+    dev: false
+
+  /embla-carousel-svelte/7.0.5_svelte@3.55.0:
+    resolution: {integrity: sha512-Dhw1l2Tz0k5G6MLAbyk1nTr06Za1J3mCfQWVxMyrHLZIGjqvgLuSq/QdklxWu4W5t9FBvaUdgGScFqsG0wmt7w==}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      embla-carousel: 7.0.5
+      svelte: 3.55.0
+    dev: false
+
+  /embla-carousel/7.0.5:
+    resolution: {integrity: sha512-loRcu0La0F7bhEMwbvgpi14iaaIEdwacH1xoplnaYfwN4KMgECkiuLgu4lx+v6MYd6lSpg/bw7ZxEuLUwYjavg==}
     dev: false
 
   /emmet/2.3.6:
@@ -2788,6 +2839,11 @@ packages:
 
   /lru-cache/7.14.1:
     resolution: {integrity: sha512-ysxwsnTKdAx96aTRdhDOCQfDgbHnt8SK0KY8SEjO0wHinhWOFTESbjVCMPbU1uGXg/ch4lifqx0wfjOawU2+WA==}
+    engines: {node: '>=12'}
+    dev: false
+
+  /luxon/3.1.1:
+    resolution: {integrity: sha512-Ah6DloGmvseB/pX1cAmjbFvyU/pKuwQMQqz7d0yvuDlVYLTs2WeDHQMpC8tGjm1da+BriHROW/OEIT/KfYg6xw==}
     engines: {node: '>=12'}
     dev: false
 
@@ -4043,6 +4099,14 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
+  /prism-svelte/0.4.7:
+    resolution: {integrity: sha512-yABh19CYbM24V7aS7TuPYRNMqthxwbvx6FF/Rw920YbyBWO3tnyPIqRMgHuSVsLmuHkkBS1Akyof463FVdkeDQ==}
+    dev: false
+
+  /prism-themes/1.9.0:
+    resolution: {integrity: sha512-tX2AYsehKDw1EORwBps+WhBFKc2kxfoFpQAjxBndbZKr4fRmMkv47XN0BghC/K1qwodB1otbe4oF23vUTFDokw==}
+    dev: false
+
   /prismjs/1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
     engines: {node: '>=6'}
@@ -4861,6 +4925,13 @@ packages:
       svelte: 3.55.0
     dev: false
 
+  /svelte-prism/1.1.6:
+    resolution: {integrity: sha512-FEVBqD1wcSKYwRpgaMGRfEIQPquKMwo+vl91lnFHhQCtTivxgkCS6ZWNOyvZGRsNbWk50fYZOWOp3xXIBWNeSw==}
+    dependencies:
+      prism-svelte: 0.4.7
+      prismjs: 1.29.0
+    dev: false
+
   /svelte/3.55.0:
     resolution: {integrity: sha512-uGu2FVMlOuey4JoKHKrpZFkoYyj0VLjJdz47zX5+gVK5odxHM40RVhar9/iK2YFRVxvfg9FkhfVlR0sjeIrOiA==}
     engines: {node: '>= 8'}
@@ -4883,6 +4954,14 @@ packages:
     dependencies:
       '@pkgr/utils': 2.3.1
       tslib: 2.4.1
+
+  /tailwindcss-hocus/0.0.7_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-KY3jLlppAoPkCLRhDqbe503c1Ryq//G1bLQqFCZz1pnB0JFzHa3VK0bXvjTa8n/dwCxgkhi5uJm1d6gp8OzPhw==}
+    peerDependencies:
+      tailwindcss: ^3.0.0
+    dependencies:
+      tailwindcss: 3.2.4
+    dev: false
 
   /tailwindcss/3.2.4:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
@@ -4990,6 +5069,11 @@ packages:
 
   /true-case-path/2.2.1:
     resolution: {integrity: sha512-0z3j8R7MCjy10kc/g+qg7Ln3alJTodw9aDuVWZa3uiWqfuBMKeAeP2ocWcxoyM3D73yz3Jt/Pu4qPr4wHSdB/Q==}
+    dev: false
+
+  /ts-luxon/4.0.1:
+    resolution: {integrity: sha512-y7wCmgQ1sIjDUheejmLIOz08XeJ8sQ75m4zKd2ppI4OgTbQIuW8e4ZfNyp75zgomSZGi0I/PIiaHSYdrHd+tiQ==}
+    engines: {node: '>=13'}
     dev: false
 
   /tsconfig-resolver/3.0.1:

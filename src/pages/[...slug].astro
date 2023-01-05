@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BuilderRender from "../components/builder/BuilderRender.svelte"
+import { getContent, getAllContent } from "@builder.io/sdk-svelte"
+
+const apiKey = import.meta.env.api_key
+const builderContent = await getContent({
+	model: 'page',
+	apiKey,
+	userAttributes: {
+		urlPath: `/${Astro.params.slug}`
+	}
+})
+
+export async function getStaticPaths() {
+  const allPages = await getAllContent({
+    model: 'page',
+    // we can't reuse constants outside of `getStaticPaths`, so this is duplicated
+	apiKey: import.meta.env.api_key,
+    limit: 0
+  })
+
+  const paths = allPages.results.map(page => ({
+    params: {
+      // gotta strip the leading slash
+      slug: (page?.data?.url as string).slice(1),
+    },
+  }))
+
+  return paths
+}
+---
+
+<Layout title={`Nathans | ${builderContent?.data?.title}` || "Welcome to Astro."} description={builderContent?.data?.description}>
+	<BuilderRender 
+		builderContent={builderContent} 
+		apiKey={apiKey}
+		client:load
+	/>
+</Layout>
