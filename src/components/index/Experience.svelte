@@ -6,7 +6,7 @@
 <section class="flex flex-col gap-4">
 	<ExperienceCard
 		name="Visual Boston"
-		href="https://www.visualboston.com/"
+		href="https://visualboston.com/"
 		description="Working with VisualBoston allowed me to work with a team of talented digital product experts focused on all aspects of the software life-cycle. which lead me in many directions from implementing interactive designs to working with complex & intricate micro-serivces."
 		position="Fullstack"
 		src="/vb.svg"
