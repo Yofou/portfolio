@@ -1,7 +1,8 @@
 <script lang="ts">
 	import "prism-themes/themes/prism-duotone-dark.min.css"
 	import "@fontsource/fira-mono"
-	import { RenderContent, RegisteredComponent } from "@builder.io/sdk-svelte"
+	import { RenderContent } from "@builder.io/sdk-svelte"
+	import type { RegisteredComponent } from "@builder.io/sdk-svelte"
     import HrTitle from "../shared/HrTitle.svelte";
 	import Title from "./Title.svelte"
 	import Link from "./Link.svelte"
