@@ -8,7 +8,7 @@ import { getImage } from "@astrojs/image"
 import { getAllContent } from '@builder.io/sdk-svelte';
 import { DateTime } from "luxon"
 
-const { src: profile } = await getImage({ src: '/profile.png', format: 'webp', width: 220, height: 250, alt: '',  })
+const { src: profile } = await getImage({ src: '/new-profile.png', format: 'webp', width: 250, height: 250, alt: '',  })
 const { src: webrevived } = await getImage({ src: '/webrevived.jpg', format: 'webp', width: 400, height: 400, alt: '',  })
 
 const content = await getAllContent({
@@ -60,21 +60,29 @@ const blogs = content.results.map(result => ({
     		</a>.
 		</p>
 
-		<img
+		<div
 			class="
-          		hidden
-          		md:block
-          		w-[220px]
-          		h-[250px]
-          		col-start-2 col-end-3
-          		row-start-1 row-end-3
-          		object-cover
-        	"
-			src={profile}
-			alt=""
-			width="220"
-			height="250"
-		/>
+				hidden
+				md:block
+				relative
+				col-start-2 col-end-3
+				row-start-1 row-end-3
+			"
+		>
+			<img
+				class="
+					w-[250px]
+					h-[250px]
+					object-cover
+				"
+				src={profile}
+				alt=""
+				width="250"
+				height="250"
+			/>
+				
+		 </div>
+		</div>
 	</header>
 
 	<HrTitle>Experience</HrTitle>
@@ -86,3 +94,12 @@ const blogs = content.results.map(result => ({
 	<HrTitle>Blogs</HrTitle>
 	<BlogsCarousel client:visible {blogs} />
 </Layout>
+
+<style>
+	.triangle {
+		width: 250px;
+		height: 250px;
+		background: red;
+		clip-path:  path('M59 0L73 12.5L82 29.5L87 43L104.5 86L99 98.5L18 94.5H8.5L0 86L8.5 70L24.5 47.5L39.5 25.5L48.5 12.5L59 0Z');
+	}
+</style>
